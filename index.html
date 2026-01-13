@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Braket | Quantum Computing for Enterprise Applications</title>
-    <meta name="description" content="Open Braket develops hybrid quantum algorithms for finance, materials discovery, and near-term quantum applications. IP-focused quantum computing startup.">
+    <title>Open Braket | Quantum Algorithms for Pre-Fault Tolerant & Fault-Tolerant Era</title>
+    <meta name="description" content="Open Braket focuses on algorithm development for both Pre-Fault Tolerant and Fault-Tolerant Quantum Computing. Fundamental, hype-free, innovation-driven solutions for real-world problems.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,7 +84,7 @@
             top: 0;
             width: 100%;
             padding: 1.5rem 0;
-            background: rgba(10, 14, 39, 0.9);
+            background: rgba(10, 14, 39, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid rgba(0, 212, 255, 0.1);
@@ -105,6 +105,7 @@
             font-weight: 600;
             color: var(--quantum-blue);
             letter-spacing: -0.02em;
+            text-decoration: none;
         }
         
         .logo span {
@@ -144,12 +145,54 @@
             color: white;
         }
         
+        /* Bold Statement Banner */
+        .statement-banner {
+            padding: 10rem 2rem 3rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .company-name {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--quantum-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 2rem;
+        }
+        
+        .bold-statement {
+            font-size: 2.2rem;
+            line-height: 1.5;
+            color: var(--light-text);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        
+        .bold-statement strong {
+            font-weight: 600;
+            color: var(--quantum-blue);
+        }
+        
+        .mission-statement {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            color: var(--muted-text);
+            font-style: italic;
+            border-left: 4px solid var(--quantum-purple);
+            padding-left: 2rem;
+            margin: 3rem auto;
+            max-width: 900px;
+        }
+        
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
-            padding: 8rem 2rem 4rem;
+            padding: 5rem 2rem 4rem;
             position: relative;
         }
         
@@ -163,11 +206,11 @@
         }
         
         .hero-content {
-            animation: fadeInUp 1s ease-out;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
         }
         
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 4rem;
             line-height: 1.1;
             font-weight: 300;
             margin-bottom: 1.5rem;
@@ -465,6 +508,12 @@
             border-radius: 10px;
             padding: 2rem;
             text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(167, 139, 250, 0.4);
         }
         
         .metric-card h4 {
@@ -479,73 +528,10 @@
             margin: 0;
         }
         
-        /* Team Section */
-        .team-section {
-            padding: 8rem 2rem;
-            background: rgba(21, 25, 51, 0.5);
-        }
-        
-        .team-section .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-        
-        .team-card {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(30, 36, 66, 0.4);
-            border: 1px solid rgba(0, 212, 255, 0.1);
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-        
-        .team-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.3);
-        }
-        
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: white;
-        }
-        
-        .team-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .team-role {
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--quantum-blue);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        
-        .team-card p {
-            color: var(--muted-text);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
         /* Contact Section */
         .contact-section {
             padding: 8rem 2rem;
+            background: rgba(21, 25, 51, 0.5);
         }
         
         .contact-section .container {
@@ -606,6 +592,15 @@
         
         /* Responsive Design */
         @media (max-width: 968px) {
+            .bold-statement {
+                font-size: 1.6rem;
+            }
+            
+            .mission-statement {
+                font-size: 1.1rem;
+                padding-left: 1rem;
+            }
+            
             .hero .container {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -641,6 +636,14 @@
         }
         
         @media (max-width: 640px) {
+            .company-name {
+                font-size: 1rem;
+            }
+            
+            .bold-statement {
+                font-size: 1.3rem;
+            }
+            
             .hero h1 {
                 font-size: 2.2rem;
             }
@@ -677,15 +680,26 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <div class="logo">Open<span>Braket</span></div>
+            <a href="index.html" class="logo">Open<span>Braket</span></a>
             <ul>
-                <li><a href="#focus">Technology</a></li>
-                <li><a href="#ip">IP Strategy</a></li>
-                <li><a href="#team">Team</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="research.html">R&D</a></li>
+                <li><a href="products.html">Products</a></li>
                 <li><a href="#contact" class="cta-button">Contact Us</a></li>
             </ul>
         </div>
     </nav>
+    
+    <!-- Bold Statement Banner -->
+    <section class="statement-banner">
+        <div class="company-name">Open Braket</div>
+        <div class="bold-statement">
+            Focuses on <strong>Algorithm Development</strong> in <strong>Pre-Fault Tolerant</strong> and <strong>Fault-Tolerant Quantum Computing Era</strong> for Real-World Problems
+        </div>
+        <div class="mission-statement">
+            We are not the largest. We are fundamental, hype-free, and innovation-driven to design solutions that serve humankind at large—easy, reliable, safe, and fast.
+        </div>
+    </section>
     
     <!-- Hero Section -->
     <section class="hero">
@@ -730,10 +744,9 @@
                 <div class="section-label">Our Technology Stack</div>
                 <h2 class="section-title">Hybrid Quantum Algorithms for <strong>Real-World Impact</strong></h2>
                 <p class="section-description">
-                    We develop quantum algorithms optimized for current Hardware devices for real-world problems, 
+                    We develop quantum algorithms optimized for current hardware devices for real-world problems, 
                     bridging the gap between quantum potential and commercial deployment. We focus on fundamentals, 
-                    and not inspired by hype. We are powered by excellent researchers and advisory members having
-                    experience and recoganised internationally.
+                    not hype. We are powered by excellent researchers and advisory members with internationally recognized experience.
                 </p>
             </div>
             
@@ -805,19 +818,19 @@
                 <div class="ip-metrics">
                     <div class="metric-card">
                         <h4>10+</h4>
-                        <p>Patents are in Pipeline for Submission</p>
+                        <p>Patents in Pipeline for Submission</p>
                     </div>
                     <div class="metric-card">
-                        <h4>High Impact Jorunals</h4>
-                        <p> in Quantum Research</p>
+                        <h4>High Impact</h4>
+                        <p>Publications in Quantum Research</p>
                     </div>
-                    <!-- <div class="metric-card">
-                        <h4>4</h4>
-                        <p>Nature Publications</p>
-                    </div> -->
                     <div class="metric-card">
-                        <h4>Running Algorithms on Latest Quantum Machines</h4>
-                        <p> with Hardware Partnerships</p>
+                        <h4>Latest Hardware</h4>
+                        <p>Running Algorithms on Quantum Machines</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Global</h4>
+                        <p>Hardware Partnerships</p>
                     </div>
                 </div>
             </div>
@@ -828,62 +841,6 @@
             </div>
         </div>
     </section>
-    
-    <!-- Team Section
-    <section id="team" class="team-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Leadership Team</div>
-                <h2 class="section-title">Built by <strong>Quantum Experts</strong></h2>
-                <p class="section-description">
-                    Our founding team combines deep quantum computing expertise with proven track records 
-                    in research, product development, and AI/ML engineering.
-                </p>
-            </div>
-            
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-avatar">RG</div>
-                    <h3>Person 1</h3>
-                    <div class="team-role">Co-Founder & CEO</div>
-                    <p>
-                        Leading business strategy, investor relations, and quantum computing commercialization. 
-                        Expertise in deeptech startups and quantum business development.
-                    </p>
-                </div>
-                
-                <div class="team-card">
-                    <div class="team-avatar">MR</div>
-                    <h3>Person 2</h3>
-                    <div class="team-role">Co-Founder & CTO</div>
-                    <p>
-                        Research Scientist at IBM Quantum. PhD from IIT Kharagpur. 4 Nature publications. 
-                        Expert in quantum algorithms, QML, and NISQ applications.
-                    </p>
-                </div>
-                
-                <div class="team-card">
-                    <div class="team-avatar">SP</div>
-                    <h3>Person 3</h3>
-                    <div class="team-role">Chief AI Officer</div>
-                    <p>
-                        Deep tech AI expert specializing in quantum-classical hybrid systems, 
-                        machine learning integration, and advanced optimization algorithms.
-                    </p>
-                </div>
-                
-                <div class="team-card">
-                    <div class="team-avatar">DG</div>
-                    <h3>Person 4</h3>
-                    <div class="team-role">Chief Product Officer</div>
-                    <p>
-                        Leading product development and software integration. Extensive experience 
-                        in building scalable quantum software platforms and developer tools.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section> -->
     
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
@@ -900,10 +857,10 @@
             <div class="contact-box">
                 <h3>Let's Build the Quantum Future Together</h3>
                 <p>Reach out to discuss partnerships, investments, or technical collaborations.</p>
-                <a href="mailto:director.openbraket@gmail.com" class="contact-email">contact@openbraket.com</a>
+                <a href="mailto:director.openbraket@gmail.com" class="contact-email">director.openbraket@gmail.com</a>
                 <div class="hero-buttons">
-                    <a href="mailto:contact@openbraket.com" class="btn-primary">Schedule a Call</a>
-                    <a href="#focus" class="btn-secondary">Learn More</a>
+                    <a href="mailto:director.openbraket@gmail.com" class="btn-primary">Schedule a Call</a>
+                    <a href="research.html" class="btn-secondary">Learn More</a>
                 </div>
             </div>
         </div>
@@ -948,7 +905,7 @@
         }, observerOptions);
         
         // Observe all cards for animation
-        document.querySelectorAll('.focus-card, .team-card, .metric-card').forEach(card => {
+        document.querySelectorAll('.focus-card, .metric-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
