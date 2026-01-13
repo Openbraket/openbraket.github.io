@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Braket | Quantum Computing for Enterprise Applications</title>
+    <meta name="description" content="Open Braket develops hybrid quantum algorithms for finance, materials discovery, and near-term quantum applications. IP-focused quantum computing startup.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --quantum-blue: #00d4ff;
+            --quantum-purple: #a78bfa;
+            --quantum-pink: #ff006e;
+            --deep-space: #0a0e27;
+            --dark-matter: #151933;
+            --star-dust: #1e2442;
+            --nebula-glow: #2d3454;
+            --light-text: #e8edf5;
+            --muted-text: #9ca3af;
+            --accent-gold: #fbbf24;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--deep-space);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Quantum Background Effect */
+        .quantum-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at top, var(--dark-matter) 0%, var(--deep-space) 100%);
+        }
+        
+        .quantum-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        
+        .particle {
+            position: absolute;
+            background: var(--quantum-blue);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .particle:nth-child(1) { width: 3px; height: 3px; top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 2px; height: 2px; top: 40%; left: 30%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 4px; height: 4px; top: 60%; left: 50%; animation-delay: 4s; background: var(--quantum-purple); }
+        .particle:nth-child(4) { width: 2px; height: 2px; top: 80%; left: 70%; animation-delay: 6s; }
+        .particle:nth-child(5) { width: 3px; height: 3px; top: 30%; left: 80%; animation-delay: 3s; }
+        .particle:nth-child(6) { width: 2px; height: 2px; top: 70%; left: 20%; animation-delay: 5s; background: var(--quantum-pink); }
+        .particle:nth-child(7) { width: 3px; height: 3px; top: 50%; left: 90%; animation-delay: 7s; }
+        .particle:nth-child(8) { width: 2px; height: 2px; top: 15%; left: 60%; animation-delay: 1s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+            50% { transform: translate(20px, -30px); opacity: 0.8; }
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--quantum-blue);
+            letter-spacing: -0.02em;
+        }
+        
+        .logo span {
+            color: var(--light-text);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: var(--muted-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            font-weight: 400;
+        }
+        
+        nav a:hover {
+            color: var(--quantum-blue);
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+        
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+        
+        .hero h1 strong {
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-tagline {
+            font-size: 1.3rem;
+            color: var(--muted-text);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+        
+        .btn-secondary {
+            color: var(--quantum-blue);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--quantum-blue);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--quantum-blue);
+            color: var(--deep-space);
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-item h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2rem;
+            color: var(--quantum-blue);
+            margin-bottom: 0.3rem;
+        }
+        
+        .stat-item p {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+        
+        /* Quantum Visualization */
+        .quantum-visual {
+            position: relative;
+            height: 500px;
+            animation: fadeIn 1.5s ease-out 0.3s backwards;
+        }
+        
+        .quantum-sphere {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid var(--quantum-blue);
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: pulse 4s infinite ease-in-out;
+        }
+        
+        .quantum-sphere:nth-child(2) {
+            width: 320px;
+            height: 320px;
+            border-color: var(--quantum-purple);
+            animation-delay: 1s;
+        }
+        
+        .quantum-sphere:nth-child(3) {
+            width: 240px;
+            height: 240px;
+            border-color: var(--quantum-pink);
+            animation-delay: 2s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.4; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Focus Areas Section */
+        .focus-areas {
+            padding: 8rem 2rem;
+            background: rgba(21, 25, 51, 0.5);
+        }
+        
+        .focus-areas .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .section-label {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--quantum-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title strong {
+            font-weight: 600;
+        }
+        
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--muted-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .focus-card {
+            background: rgba(30, 36, 66, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .focus-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--quantum-blue), var(--quantum-purple));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        
+        .focus-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+        
+        .focus-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .focus-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .focus-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .focus-card p {
+            color: var(--muted-text);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .focus-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        
+        .focus-features li {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--quantum-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .focus-features li::before {
+            content: '▸';
+            color: var(--quantum-purple);
+        }
+        
+        /* IP Strategy Section */
+        .ip-section {
+            padding: 8rem 2rem;
+        }
+        
+        .ip-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .ip-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        
+        .ip-content h2 strong {
+            font-weight: 600;
+            color: var(--quantum-blue);
+        }
+        
+        .ip-content p {
+            font-size: 1.1rem;
+            color: var(--muted-text);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .ip-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .metric-card {
+            background: rgba(30, 36, 66, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .metric-card h4 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2.5rem;
+            color: var(--quantum-purple);
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-card p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 8rem 2rem;
+            background: rgba(21, 25, 51, 0.5);
+        }
+        
+        .team-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .team-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(30, 36, 66, 0.4);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+        
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .team-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-role {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--quantum-blue);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-card p {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 8rem 2rem;
+        }
+        
+        .contact-section .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-box {
+            background: rgba(30, 36, 66, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-box p {
+            color: var(--muted-text);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-email {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.3rem;
+            color: var(--quantum-blue);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 2rem;
+            transition: color 0.3s;
+        }
+        
+        .contact-email:hover {
+            color: var(--quantum-purple);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        footer p {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .quantum-visual {
+                height: 300px;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .ip-section .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .focus-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Quantum Background -->
+    <div class="quantum-bg">
+        <div class="quantum-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Open<span>Braket</span></div>
+            <ul>
+                <li><a href="#focus">Technology</a></li>
+                <li><a href="#ip">IP Strategy</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact" class="cta-button">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Quantum Algorithms for <strong>Near-Term Applications</strong></h1>
+                <p class="hero-tagline">
+                    Building proprietary hybrid quantum algorithms that solve real-world problems in finance, 
+                    materials discovery, and optimization—today, not tomorrow.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">Partner with Us</a>
+                    <a href="#focus" class="btn-secondary">Our Technology</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>NISQ</h3>
+                        <p>Near-Term Hybrid Algorithms</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>IP-First</h3>
+                        <p>Patent Strategy</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100+</h3>
+                        <p>Qubit Hardware</p>
+                    </div>
+                </div>
+            </div>
+            <div class="quantum-visual">
+                <div class="quantum-sphere"></div>
+                <div class="quantum-sphere"></div>
+                <div class="quantum-sphere"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Focus Areas Section -->
+    <section id="focus" class="focus-areas">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Our Technology Stack</div>
+                <h2 class="section-title">Hybrid Quantum Algorithms for <strong>Real-World Impact</strong></h2>
+                <p class="section-description">
+                    We develop quantum algorithms optimized for current Hardware devices for real-world problems, 
+                    bridging the gap between quantum potential and commercial deployment. We focus on fundamentals, 
+                    and not inspired by hype. We are powered by excellent researchers and advisory members having
+                    experience and recoganised internationally.
+                </p>
+            </div>
+            
+            <div class="focus-grid">
+                <div class="focus-card">
+                    <div class="focus-icon">₿</div>
+                    <h3>Quantum for Finance</h3>
+                    <p>
+                        Advanced quantum algorithms for portfolio optimization, risk analysis, derivatives pricing, 
+                        and fraud detection using variational quantum circuits and quantum-enhanced Monte Carlo methods.
+                    </p>
+                    <ul class="focus-features">
+                        <li>Portfolio optimization (VQE/QAOA)</li>
+                        <li>Option pricing & risk simulation</li>
+                        <li>Quantum-enhanced credit scoring</li>
+                        <li>High-frequency trading algorithms</li>
+                    </ul>
+                </div>
+                
+                <div class="focus-card">
+                    <div class="focus-icon">⚛️</div>
+                    <h3>Materials Discovery</h3>
+                    <p>
+                        Quantum chemistry simulations for drug discovery, battery materials, catalysts, 
+                        and semiconductors using adaptive variational algorithms on real quantum hardware.
+                    </p>
+                    <ul class="focus-features">
+                        <li>Molecular ground state calculations</li>
+                        <li>Reaction pathway optimization</li>
+                        <li>Battery material screening</li>
+                        <li>Catalyst design & simulation</li>
+                    </ul>
+                </div>
+                
+                <div class="focus-card">
+                    <div class="focus-icon">∞</div>
+                    <h3>Hybrid Quantum-Classical</h3>
+                    <p>
+                        Proprietary quantum machine learning algorithms combining quantum feature maps, 
+                        kernel methods, and classical neural networks for enhanced predictive modeling.
+                    </p>
+                    <ul class="focus-features">
+                        <li>Quantum reservoir computing</li>
+                        <li>Quantum time series prediction</li>
+                        <li>Quantum signal processing</li>
+                        <li>Variational quantum classifiers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- IP Strategy Section -->
+    <section id="ip" class="ip-section">
+        <div class="container">
+            <div class="ip-content">
+                <h2>An <strong>IP-First</strong> Quantum Computing Company</h2>
+                <p>
+                    Our competitive advantage lies in proprietary quantum algorithms protected by a robust 
+                    patent portfolio. We're building defensible intellectual property around shallow-circuit 
+                    architectures, error mitigation techniques, and application-specific quantum kernels.
+                </p>
+                <p>
+                    Every algorithm we develop is designed with IP protection in mind—from novel variational 
+                    ansätze to quantum-classical hybrid optimization strategies that deliver quantum advantage 
+                    on today's hardware.
+                </p>
+                
+                <div class="ip-metrics">
+                    <div class="metric-card">
+                        <h4>10+</h4>
+                        <p>Patents are in Pipeline for Submission</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>High Impact Jorunals</h4>
+                        <p> in Quantum Research</p>
+                    </div>
+                    <!-- <div class="metric-card">
+                        <h4>4</h4>
+                        <p>Nature Publications</p>
+                    </div> -->
+                    <div class="metric-card">
+                        <h4>Running Algorithms on Latest Quantum Machines</h4>
+                        <p> with Hardware Partnerships</p>
+                    </div>
+                </div>
+            </div>
+            <div class="quantum-visual">
+                <div class="quantum-sphere"></div>
+                <div class="quantum-sphere"></div>
+                <div class="quantum-sphere"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section
+    <section id="team" class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Leadership Team</div>
+                <h2 class="section-title">Built by <strong>Quantum Experts</strong></h2>
+                <p class="section-description">
+                    Our founding team combines deep quantum computing expertise with proven track records 
+                    in research, product development, and AI/ML engineering.
+                </p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">RG</div>
+                    <h3>Person 1</h3>
+                    <div class="team-role">Co-Founder & CEO</div>
+                    <p>
+                        Leading business strategy, investor relations, and quantum computing commercialization. 
+                        Expertise in deeptech startups and quantum business development.
+                    </p>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-avatar">MR</div>
+                    <h3>Person 2</h3>
+                    <div class="team-role">Co-Founder & CTO</div>
+                    <p>
+                        Research Scientist at IBM Quantum. PhD from IIT Kharagpur. 4 Nature publications. 
+                        Expert in quantum algorithms, QML, and NISQ applications.
+                    </p>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-avatar">SP</div>
+                    <h3>Person 3</h3>
+                    <div class="team-role">Chief AI Officer</div>
+                    <p>
+                        Deep tech AI expert specializing in quantum-classical hybrid systems, 
+                        machine learning integration, and advanced optimization algorithms.
+                    </p>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-avatar">DG</div>
+                    <h3>Person 4</h3>
+                    <div class="team-role">Chief Product Officer</div>
+                    <p>
+                        Leading product development and software integration. Extensive experience 
+                        in building scalable quantum software platforms and developer tools.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Get in Touch</div>
+                <h2 class="section-title">Ready to explore <strong>Quantum Advantage?</strong></h2>
+                <p class="section-description">
+                    Whether you're an investor, enterprise partner, or quantum enthusiast, 
+                    we'd love to discuss how our technology can drive your innovation forward.
+                </p>
+            </div>
+            
+            <div class="contact-box">
+                <h3>Let's Build the Quantum Future Together</h3>
+                <p>Reach out to discuss partnerships, investments, or technical collaborations.</p>
+                <a href="mailto:director.openbraket@gmail.com" class="contact-email">contact@openbraket.com</a>
+                <div class="hero-buttons">
+                    <a href="mailto:contact@openbraket.com" class="btn-primary">Schedule a Call</a>
+                    <a href="#focus" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Open Braket. Pioneering Quantum Algorithms for Near-Term Applications.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">Bangalore, India | Global Quantum Computing Innovation</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all cards for animation
+        document.querySelectorAll('.focus-card, .team-card, .metric-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
