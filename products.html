@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Open Braket | Quantum Computing Solutions</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --quantum-blue: #00d4ff;
+            --quantum-purple: #a78bfa;
+            --quantum-pink: #ff006e;
+            --deep-space: #0a0e27;
+            --dark-matter: #151933;
+            --star-dust: #1e2442;
+            --nebula-glow: #2d3454;
+            --light-text: #e8edf5;
+            --muted-text: #9ca3af;
+            --accent-gold: #fbbf24;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--deep-space);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Quantum Background */
+        .quantum-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at top, var(--dark-matter) 0%, var(--deep-space) 100%);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--quantum-blue);
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--light-text);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: var(--muted-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            font-weight: 400;
+        }
+        
+        nav a:hover {
+            color: var(--quantum-blue);
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+            color: white;
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 10rem 2rem 5rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header h1 strong {
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            font-size: 1.3rem;
+            color: var(--muted-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Product Hero Section */
+        .product-hero {
+            padding: 5rem 2rem;
+            background: rgba(21, 25, 51, 0.5);
+        }
+        
+        .product-hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .product-content h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-content h2 strong {
+            font-weight: 600;
+            color: var(--quantum-blue);
+        }
+        
+        .product-tagline {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--quantum-purple);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        .product-content p {
+            font-size: 1.2rem;
+            color: var(--muted-text);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+        
+        .product-visual {
+            background: rgba(30, 36, 66, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .product-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Features Grid */
+        section {
+            padding: 5rem 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .section-title strong {
+            font-weight: 600;
+            color: var(--quantum-blue);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .feature-card {
+            background: rgba(30, 36, 66, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: var(--muted-text);
+            line-height: 1.7;
+        }
+        
+        /* Use Cases */
+        .use-cases {
+            background: rgba(21, 25, 51, 0.5);
+        }
+        
+        .use-case-list {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .use-case-item {
+            background: rgba(30, 36, 66, 0.6);
+            border-left: 4px solid var(--quantum-purple);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .use-case-item h4 {
+            font-size: 1.4rem;
+            color: var(--quantum-blue);
+            margin-bottom: 0.8rem;
+        }
+        
+        .use-case-item p {
+            color: var(--muted-text);
+            line-height: 1.7;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        footer p {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .product-hero .container {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quantum-bg"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">Open<span>Braket</span></a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="research.html">R&D</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="index.html#contact" class="cta-button">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Quantum <strong>Products</strong></h1>
+        <p>Enterprise-ready quantum computing solutions for materials discovery and computational chemistry</p>
+    </div>
+    
+    <!-- Product Hero -->
+    <section class="product-hero">
+        <div class="container">
+            <div class="product-content">
+                <div class="product-tagline">Flagship Product</div>
+                <h2><strong>QMat-Sim</strong></h2>
+                <p>
+                    Quantum Materials Simulator - A comprehensive platform for quantum chemistry simulations, 
+                    molecular modeling, and materials discovery powered by hybrid quantum-classical algorithms 
+                    running on real quantum hardware.
+                </p>
+                <a href="index.html#contact" class="btn-primary">Request Demo</a>
+            </div>
+            <div class="product-visual">
+                <div class="product-icon">⚛️</div>
+                <h3 style="color: var(--quantum-blue); margin-bottom: 1rem;">Quantum Materials Simulator</h3>
+                <p style="color: var(--muted-text);">
+                    Accelerate materials R&D with quantum advantage on today's hardware
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Features -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Key <strong>Features</strong></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Molecular Simulation</h3>
+                    <p>
+                        Accurate ground state energy calculations for molecules up to 20+ atoms using 
+                        variational quantum eigensolvers optimized for NISQ devices.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Reaction Pathways</h3>
+                    <p>
+                        Explore chemical reaction mechanisms and transition states with quantum chemistry 
+                        algorithms providing exponential speedup for complex systems.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3>Battery Materials</h3>
+                    <p>
+                        Screen and optimize battery electrode materials, electrolytes, and interfaces 
+                        for next-generation energy storage applications.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>Drug Discovery</h3>
+                    <p>
+                        Simulate protein-ligand interactions and molecular binding energies for 
+                        pharmaceutical research and drug design workflows.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Catalyst Design</h3>
+                    <p>
+                        Model catalytic mechanisms and optimize catalyst structures for industrial 
+                        chemical processes and sustainable chemistry applications.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔌</div>
+                    <h3>Hardware Integration</h3>
+                    <p>
+                        Seamless integration with IBM Quantum, Rigetti, and other quantum hardware 
+                        platforms with automatic circuit optimization.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <div class="container">
+            <h2 class="section-title">Industry <strong>Applications</strong></h2>
+            <div class="use-case-list">
+                <div class="use-case-item">
+                    <h4>🔋 Energy Storage</h4>
+                    <p>
+                        Accelerate development of next-generation lithium-ion and solid-state batteries 
+                        by simulating electrode materials, electrolyte interfaces, and ion transport mechanisms. 
+                        Reduce experimental iteration cycles by 40-60% through accurate quantum simulations.
+                    </p>
+                </div>
+                
+                <div class="use-case-item">
+                    <h4>💊 Pharmaceutical Research</h4>
+                    <p>
+                        Enable early-stage drug discovery by accurately predicting molecular binding energies, 
+                        reaction pathways, and pharmacokinetic properties. Identify promising drug candidates 
+                        faster with quantum-enhanced molecular modeling.
+                    </p>
+                </div>
+                
+                <div class="use-case-item">
+                    <h4>🏭 Industrial Catalysis</h4>
+                    <p>
+                        Optimize catalysts for ammonia synthesis, CO₂ reduction, and petrochemical processes. 
+                        Design more efficient and sustainable catalytic systems by modeling reaction mechanisms 
+                        at the quantum level.
+                    </p>
+                </div>
+                
+                <div class="use-case-item">
+                    <h4>🔬 Materials Science Research</h4>
+                    <p>
+                        Discover novel materials for semiconductors, superconductors, and advanced composites. 
+                        Screen thousands of material candidates computationally before synthesis, significantly 
+                        reducing R&D costs and time-to-market.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Technical Specs -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Technical <strong>Specifications</strong></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Algorithm Suite</h3>
+                    <p>
+                        • Variational Quantum Eigensolver (VQE)<br>
+                        • Quantum Phase Estimation (QPE)<br>
+                        • Adaptive Variational Algorithms<br>
+                        • Quantum Embedding Methods<br>
+                        • Error Mitigation Techniques
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>System Scale</h3>
+                    <p>
+                        • Molecules: Up to 20+ atoms<br>
+                        • Basis Sets: STO-3G to 6-31G*<br>
+                        • Active Space: 12 orbitals / 12 electrons<br>
+                        • Circuit Depth: Optimized for NISQ<br>
+                        • Qubits Required: 10-50 qubits
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Platform Features</h3>
+                    <p>
+                        • Cloud-based SaaS platform<br>
+                        • Python API & Jupyter integration<br>
+                        • Visualization dashboard<br>
+                        • Export to PDB, XYZ, VASP<br>
+                        • Collaborative workspaces
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section style="background: rgba(21, 25, 51, 0.5);">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Ready to <strong>Get Started?</strong></h2>
+            <p style="font-size: 1.2rem; color: var(--muted-text); max-width: 700px; margin: 0 auto 2rem;">
+                Schedule a demo to see how QMat-Sim can accelerate your materials research and discovery workflows.
+            </p>
+            <a href="index.html#contact" class="btn-primary">Request Demo</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Open Braket. Pioneering Quantum Algorithms for Near-Term Applications.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">Bangalore, India | Global Quantum Computing Innovation</p>
+        </div>
+    </footer>
+</body>
+</html>
