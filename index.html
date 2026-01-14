@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Braket | Quantum Algorithms for Pre-Fault Tolerant & Fault-Tolerant Era</title>
-    <meta name="description" content="Open Braket focuses on algorithm development for both Pre-Fault Tolerant and Fault-Tolerant Quantum Computing. Fundamental, hype-free, innovation-driven solutions for real-world problems.">
+    <meta name="description" content="Open Braket focuses on algorithm development for both Pre-Fault Tolerant and Fault-Tolerant Quantum Computing.">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
@@ -19,7 +18,6 @@
             --deep-space: #0a0e27;
             --dark-matter: #151933;
             --star-dust: #1e2442;
-            --nebula-glow: #2d3454;
             --light-text: #e8edf5;
             --muted-text: #9ca3af;
             --accent-gold: #fbbf24;
@@ -39,7 +37,6 @@
             overflow-x: hidden;
         }
         
-        /* Quantum Background Effect */
         .quantum-bg {
             position: fixed;
             top: 0;
@@ -70,15 +67,12 @@
         .particle:nth-child(4) { width: 2px; height: 2px; top: 80%; left: 70%; animation-delay: 6s; }
         .particle:nth-child(5) { width: 3px; height: 3px; top: 30%; left: 80%; animation-delay: 3s; }
         .particle:nth-child(6) { width: 2px; height: 2px; top: 70%; left: 20%; animation-delay: 5s; background: var(--quantum-pink); }
-        .particle:nth-child(7) { width: 3px; height: 3px; top: 50%; left: 90%; animation-delay: 7s; }
-        .particle:nth-child(8) { width: 2px; height: 2px; top: 15%; left: 60%; animation-delay: 1s; }
         
         @keyframes float {
             0%, 100% { transform: translate(0, 0); opacity: 0.3; }
             50% { transform: translate(20px, -30px); opacity: 0.8; }
         }
         
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -123,101 +117,136 @@
             text-decoration: none;
             font-size: 0.95rem;
             transition: color 0.3s;
-            font-weight: 400;
         }
         
         nav a:hover {
             color: var(--quantum-blue);
         }
         
-        .cta-button {
-            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
-            color: white;
-            padding: 0.7rem 1.8rem;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
-            color: white;
-        }
-        
-        /* Bold Statement Banner */
-        .statement-banner {
-            padding: 10rem 2rem 3rem;
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .company-name {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.2rem;
-            color: var(--quantum-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            margin-bottom: 2rem;
-        }
-        
-        .bold-statement {
-            font-size: 2.2rem;
-            line-height: 1.5;
-            color: var(--light-text);
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-        
-        .bold-statement strong {
-            font-weight: 600;
-            color: var(--quantum-blue);
-        }
-        
-        .mission-statement {
-            font-size: 1.4rem;
-            line-height: 1.7;
-            color: var(--muted-text);
-            font-style: italic;
-            border-left: 4px solid var(--quantum-purple);
-            padding-left: 2rem;
-            margin: 3rem auto;
-            max-width: 900px;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 85vh;
+        /* Quantum Circuit Hero */
+        .quantum-circuit-hero {
+            padding: 8rem 2rem 4rem;
+            min-height: 50vh;
             display: flex;
             align-items: center;
-            padding: 5rem 2rem 4rem;
+            justify-content: center;
+        }
+        
+        .circuit-container {
+            max-width: 1400px;
+            width: 100%;
             position: relative;
         }
         
-        .hero .container {
-            max-width: 1200px;
+        #quantumCircuit {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.15));
+        }
+        
+        .circuit-stage {
+            transition: opacity 1.2s ease-in-out;
+            cursor: pointer;
+        }
+        
+        @keyframes glow-blue {
+            0%, 100% { filter: drop-shadow(0 0 8px var(--quantum-blue)); }
+            50% { filter: drop-shadow(0 0 20px var(--quantum-blue)); }
+        }
+        
+        @keyframes glow-purple {
+            0%, 100% { filter: drop-shadow(0 0 8px var(--quantum-purple)); }
+            50% { filter: drop-shadow(0 0 20px var(--quantum-purple)); }
+        }
+        
+        @keyframes glow-pink {
+            0%, 100% { filter: drop-shadow(0 0 8px var(--quantum-pink)); }
+            50% { filter: drop-shadow(0 0 20px var(--quantum-pink)); }
+        }
+        
+        @keyframes glow-gold {
+            0%, 100% { filter: drop-shadow(0 0 8px var(--accent-gold)); }
+            50% { filter: drop-shadow(0 0 20px var(--accent-gold)); }
+        }
+        
+        #stage1.active { animation: glow-blue 2s ease-in-out; }
+        #stage2.active { animation: glow-purple 2s ease-in-out; }
+        #stage3.active { animation: glow-pink 2s ease-in-out; }
+        #stage4.active { animation: glow-gold 2s ease-in-out; }
+        
+        .circuit-stage:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+        
+        .circuit-paused {
+            animation-play-state: paused !important;
+        }
+        
+        /* Cat animations */
+        .cat-output {
+            transition: all 0.6s ease;
+        }
+        
+        @keyframes cat-appear {
+            0% { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+            60% { transform: scale(1.1) rotate(5deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        
+        .cat-alive {
+            animation: cat-appear 0.8s ease-out;
+        }
+        
+        .cat-dead {
+            animation: cat-appear 0.8s ease-out;
+            opacity: 0.6;
+            filter: grayscale(0.8);
+        }
+        
+        @keyframes quantum-superposition {
+            0%, 100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-5px); }
+        }
+        
+        .cat-superposition {
+            animation: quantum-superposition 1.5s ease-in-out infinite;
+        }
+        
+        /* CTA Tagline */
+        .cta-tagline {
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, rgba(21, 25, 51, 0) 0%, rgba(21, 25, 51, 0.5) 100%);
+            text-align: center;
+        }
+        
+        .tagline-container {
+            max-width: 900px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            align-items: center;
         }
         
-        .hero-content {
-            animation: fadeInUp 1s ease-out 0.3s backwards;
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            line-height: 1.1;
+        .tagline-question {
+            font-size: 1.8rem;
+            color: var(--muted-text);
+            margin-bottom: 2rem;
             font-weight: 300;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
+            line-height: 1.4;
         }
         
-        .hero h1 strong {
+        .emphasis-text {
+            color: var(--light-text);
+            font-style: italic;
+        }
+        
+        .tagline-cta {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        
+        .tagline-cta strong {
             font-weight: 600;
             background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
             -webkit-background-clip: text;
@@ -225,122 +254,22 @@
             background-clip: text;
         }
         
-        .hero-tagline {
+        .brand-highlight {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--quantum-blue);
+            font-weight: 600;
+        }
+        
+        .tagline-subtitle {
             font-size: 1.3rem;
             color: var(--muted-text);
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
             margin-bottom: 3rem;
+            font-style: italic;
         }
         
-        .btn-primary {
-            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: inline-block;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
-        }
-        
-        .btn-secondary {
-            color: var(--quantum-blue);
-            padding: 1rem 2.5rem;
-            border: 2px solid var(--quantum-blue);
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--quantum-blue);
-            color: var(--deep-space);
-        }
-        
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .stat-item h3 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 2rem;
-            color: var(--quantum-blue);
-            margin-bottom: 0.3rem;
-        }
-        
-        .stat-item p {
-            color: var(--muted-text);
-            font-size: 0.9rem;
-        }
-        
-        /* Quantum Visualization */
-        .quantum-visual {
-            position: relative;
-            height: 500px;
-            animation: fadeIn 1.5s ease-out 0.3s backwards;
-        }
-        
-        .quantum-sphere {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid var(--quantum-blue);
-            border-radius: 50%;
-            opacity: 0.2;
-            animation: pulse 4s infinite ease-in-out;
-        }
-        
-        .quantum-sphere:nth-child(2) {
-            width: 320px;
-            height: 320px;
-            border-color: var(--quantum-purple);
-            animation-delay: 1s;
-        }
-        
-        .quantum-sphere:nth-child(3) {
-            width: 240px;
-            height: 240px;
-            border-color: var(--quantum-pink);
-            animation-delay: 2s;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
-            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.4; }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* Focus Areas Section */
+        /* Focus Areas */
         .focus-areas {
-            padding: 8rem 2rem;
+            padding: 6rem 2rem;
             background: rgba(21, 25, 51, 0.5);
         }
         
@@ -351,7 +280,7 @@
         
         .section-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
         }
         
         .section-label {
@@ -364,7 +293,7 @@
         }
         
         .section-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 300;
             margin-bottom: 1rem;
         }
@@ -374,7 +303,7 @@
         }
         
         .section-description {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--muted-text);
             max-width: 700px;
             margin: 0 auto;
@@ -382,40 +311,22 @@
         
         .focus-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
         
         .focus-card {
             background: rgba(30, 36, 66, 0.6);
             border: 1px solid rgba(0, 212, 255, 0.1);
             border-radius: 12px;
-            padding: 2.5rem;
+            padding: 2rem;
             transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .focus-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--quantum-blue), var(--quantum-purple));
-            transform: scaleX(0);
-            transition: transform 0.4s;
         }
         
         .focus-card:hover {
             transform: translateY(-8px);
             border-color: rgba(0, 212, 255, 0.3);
             box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
-        }
-        
-        .focus-card:hover::before {
-            transform: scaleX(1);
         }
         
         .focus-icon {
@@ -431,7 +342,7 @@
         }
         
         .focus-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
             font-weight: 600;
         }
@@ -446,7 +357,7 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 0.7rem;
+            gap: 0.6rem;
         }
         
         .focus-features li {
@@ -463,74 +374,9 @@
             color: var(--quantum-purple);
         }
         
-        /* IP Strategy Section */
-        .ip-section {
-            padding: 8rem 2rem;
-        }
-        
-        .ip-section .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-        
-        .ip-content h2 {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-        
-        .ip-content h2 strong {
-            font-weight: 600;
-            color: var(--quantum-blue);
-        }
-        
-        .ip-content p {
-            font-size: 1.1rem;
-            color: var(--muted-text);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-        
-        .ip-metrics {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .metric-card {
-            background: rgba(30, 36, 66, 0.6);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        
-        .metric-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(167, 139, 250, 0.4);
-        }
-        
-        .metric-card h4 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 2.5rem;
-            color: var(--quantum-purple);
-            margin-bottom: 0.5rem;
-        }
-        
-        .metric-card p {
-            font-size: 0.95rem;
-            margin: 0;
-        }
-        
-        /* Contact Section */
+        /* Contact */
         .contact-section {
-            padding: 8rem 2rem;
+            padding: 6rem 2rem;
             background: rgba(21, 25, 51, 0.5);
         }
         
@@ -544,45 +390,23 @@
             background: rgba(30, 36, 66, 0.6);
             border: 1px solid rgba(0, 212, 255, 0.2);
             border-radius: 12px;
-            padding: 4rem;
-            margin-top: 3rem;
-        }
-        
-        .contact-box h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .contact-box p {
-            color: var(--muted-text);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+            padding: 3rem;
+            margin-top: 2rem;
         }
         
         .contact-email {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--quantum-blue);
             text-decoration: none;
             display: inline-block;
-            margin-bottom: 2rem;
-            transition: color 0.3s;
+            margin: 1.5rem 0;
         }
         
-        .contact-email:hover {
-            color: var(--quantum-purple);
-        }
-        
-        /* Footer */
         footer {
-            padding: 3rem 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
             text-align: center;
-        }
-        
-        footer .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         footer p {
@@ -590,84 +414,17 @@
             font-size: 0.9rem;
         }
         
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .bold-statement {
-                font-size: 1.6rem;
-            }
-            
-            .mission-statement {
-                font-size: 1.1rem;
-                padding-left: 1rem;
-            }
-            
-            .hero .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .hero-stats {
-                justify-content: center;
-            }
-            
-            .quantum-visual {
-                height: 300px;
-            }
-            
-            nav ul {
-                display: none;
-            }
-            
-            .ip-section .container {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .company-name {
-                font-size: 1rem;
-            }
-            
-            .bold-statement {
-                font-size: 1.3rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero-tagline {
-                font-size: 1.1rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-            }
-            
-            .focus-grid {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 768px) {
+            .tagline-question { font-size: 1.3rem; }
+            .tagline-cta { font-size: 1.8rem; }
+            .section-title { font-size: 2rem; }
+            nav ul { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Quantum Background -->
     <div class="quantum-bg">
         <div class="quantum-particles">
-            <div class="particle"></div>
-            <div class="particle"></div>
             <div class="particle"></div>
             <div class="particle"></div>
             <div class="particle"></div>
@@ -677,76 +434,233 @@
         </div>
     </div>
     
-    <!-- Navigation -->
     <nav>
         <div class="container">
-            <a href="index.html" class="logo">Open<span>Braket</span></a>
+            <a href="#" class="logo">Open<span>Braket</span></a>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="research.html">R&D</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="#contact" class="cta-button">Contact Us</a></li>
+                <li><a href="#focus">Technology</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
     
-    <!-- Bold Statement Banner -->
-    <section class="statement-banner">
-        <div class="company-name">Open Braket</div>
-        <div class="bold-statement">
-            Focuses on <strong>Algorithm Development</strong> in <strong>Pre-Fault Tolerant</strong> and <strong>Fault-Tolerant Quantum Computing Era</strong> for Real-World Problems
-        </div>
-        <div class="mission-statement">
-            We are not the largest. We are fundamental, hype-free, and innovation-driven to design solutions that serve humankind at large—easy, reliable, safe, and fast.
+    <section class="quantum-circuit-hero">
+        <div class="circuit-container">
+            <svg id="quantumCircuit" viewBox="0 0 1400 550" xmlns="http://www.w3.org/2000/svg">
+                <!-- Input: Forest with Cats -->
+                <g id="inputForest">
+                    <!-- Forest background -->
+                    <rect x="0" y="50" width="80" height="420" fill="rgba(34, 139, 34, 0.15)" rx="8"/>
+                    
+                    <!-- Trees -->
+                    <ellipse cx="20" cy="180" rx="15" ry="25" fill="rgba(34, 139, 34, 0.3)"/>
+                    <rect x="17" y="180" width="6" height="30" fill="rgba(101, 67, 33, 0.4)"/>
+                    
+                    <ellipse cx="45" cy="150" rx="18" ry="30" fill="rgba(34, 139, 34, 0.3)"/>
+                    <rect x="42" y="150" width="6" height="35" fill="rgba(101, 67, 33, 0.4)"/>
+                    
+                    <ellipse cx="65" cy="200" rx="12" ry="20" fill="rgba(34, 139, 34, 0.3)"/>
+                    <rect x="62" y="200" width="6" height="25" fill="rgba(101, 67, 33, 0.4)"/>
+                    
+                    <ellipse cx="25" cy="320" rx="15" ry="25" fill="rgba(34, 139, 34, 0.3)"/>
+                    <rect x="22" y="320" width="6" height="30" fill="rgba(101, 67, 33, 0.4)"/>
+                    
+                    <ellipse cx="55" cy="350" rx="18" ry="28" fill="rgba(34, 139, 34, 0.3)"/>
+                    <rect x="52" y="350" width="6" height="35" fill="rgba(101, 67, 33, 0.4)"/>
+                    
+                    <ellipse cx="30" cy="410" rx="14" ry="22" fill="rgba(34, 139, 34, 0.3)"/>
+                    <rect x="27" y="410" width="6" height="28" fill="rgba(101, 67, 33, 0.4)"/>
+                    
+                    <!-- Input Cats (simple stylized cats) -->
+                    <g class="input-cat" transform="translate(15, 240)">
+                        <ellipse cx="0" cy="0" rx="12" ry="10" fill="#FFA500" opacity="0.8"/>
+                        <circle cx="-4" cy="-3" r="2" fill="#000"/>
+                        <circle cx="4" cy="-3" r="2" fill="#000"/>
+                        <polygon points="-10,-8 -15,-12 -12,-6" fill="#FFA500" opacity="0.8"/>
+                        <polygon points="10,-8 15,-12 12,-6" fill="#FFA500" opacity="0.8"/>
+                    </g>
+                    
+                    <g class="input-cat" transform="translate(50, 280)">
+                        <ellipse cx="0" cy="0" rx="12" ry="10" fill="#FF6347" opacity="0.8"/>
+                        <circle cx="-4" cy="-3" r="2" fill="#000"/>
+                        <circle cx="4" cy="-3" r="2" fill="#000"/>
+                        <polygon points="-10,-8 -15,-12 -12,-6" fill="#FF6347" opacity="0.8"/>
+                        <polygon points="10,-8 15,-12 12,-6" fill="#FF6347" opacity="0.8"/>
+                    </g>
+                    
+                    <g class="input-cat" transform="translate(35, 130)">
+                        <ellipse cx="0" cy="0" rx="11" ry="9" fill="#87CEEB" opacity="0.8"/>
+                        <circle cx="-4" cy="-3" r="2" fill="#000"/>
+                        <circle cx="4" cy="-3" r="2" fill="#000"/>
+                        <polygon points="-9,-7 -14,-11 -11,-5" fill="#87CEEB" opacity="0.8"/>
+                        <polygon points="9,-7 14,-11 11,-5" fill="#87CEEB" opacity="0.8"/>
+                    </g>
+                    
+                    <g class="input-cat" transform="translate(60, 380)">
+                        <ellipse cx="0" cy="0" rx="12" ry="10" fill="#FFD700" opacity="0.8"/>
+                        <circle cx="-4" cy="-3" r="2" fill="#000"/>
+                        <circle cx="4" cy="-3" r="2" fill="#000"/>
+                        <polygon points="-10,-8 -15,-12 -12,-6" fill="#FFD700" opacity="0.8"/>
+                        <polygon points="10,-8 15,-12 12,-6" fill="#FFD700" opacity="0.8"/>
+                    </g>
+                    
+                    <text x="40" y="480" text-anchor="middle" fill="var(--quantum-blue)" font-size="14" font-family="IBM Plex Mono" opacity="0.7">Input</text>
+                </g>
+                
+                <!-- Qubit Lines -->
+                <line x1="100" y1="120" x2="1050" y2="120" stroke="rgba(0, 212, 255, 0.5)" stroke-width="3"/>
+                <line x1="100" y1="200" x2="1050" y2="200" stroke="rgba(0, 212, 255, 0.5)" stroke-width="3"/>
+                <line x1="100" y1="280" x2="1050" y2="280" stroke="rgba(0, 212, 255, 0.5)" stroke-width="3"/>
+                <line x1="100" y1="360" x2="1050" y2="360" stroke="rgba(0, 212, 255, 0.5)" stroke-width="3"/>
+                
+                <!-- Qubit Labels -->
+                <text x="90" y="127" text-anchor="end" fill="var(--light-text)" font-size="18" font-family="IBM Plex Mono">|q₀⟩</text>
+                <text x="90" y="207" text-anchor="end" fill="var(--light-text)" font-size="18" font-family="IBM Plex Mono">|q₁⟩</text>
+                <text x="90" y="287" text-anchor="end" fill="var(--light-text)" font-size="18" font-family="IBM Plex Mono">|q₂⟩</text>
+                <text x="90" y="367" text-anchor="end" fill="var(--light-text)" font-size="18" font-family="IBM Plex Mono">|q₃⟩</text>
+                
+                <!-- Stage 1: Data Encoding -->
+                <g id="stage1" class="circuit-stage" opacity="0">
+                    <circle cx="200" cy="120" r="25" fill="rgba(0, 212, 255, 0.2)" stroke="var(--quantum-blue)" stroke-width="3"/>
+                    <circle cx="200" cy="200" r="25" fill="rgba(0, 212, 255, 0.2)" stroke="var(--quantum-blue)" stroke-width="3"/>
+                    <circle cx="200" cy="280" r="25" fill="rgba(0, 212, 255, 0.2)" stroke="var(--quantum-blue)" stroke-width="3"/>
+                    <circle cx="200" cy="360" r="25" fill="rgba(0, 212, 255, 0.2)" stroke="var(--quantum-blue)" stroke-width="3"/>
+                    <text x="200" y="420" text-anchor="middle" fill="var(--quantum-blue)" font-size="16" font-family="IBM Plex Mono">Encode</text>
+                </g>
+                
+                <!-- Stage 2: Quantum Gates -->
+                <g id="stage2" class="circuit-stage" opacity="0">
+                    <rect x="330" y="92" width="55" height="55" fill="rgba(167, 139, 250, 0.2)" stroke="var(--quantum-purple)" stroke-width="4" rx="8"/>
+                    <text x="357.5" y="127" text-anchor="middle" fill="var(--quantum-purple)" font-size="24" font-family="IBM Plex Mono" font-weight="600">H</text>
+                    
+                    <rect x="330" y="172" width="55" height="55" fill="rgba(167, 139, 250, 0.2)" stroke="var(--quantum-purple)" stroke-width="4" rx="8"/>
+                    <text x="357.5" y="207" text-anchor="middle" fill="var(--quantum-purple)" font-size="24" font-family="IBM Plex Mono" font-weight="600">H</text>
+                    
+                    <rect x="330" y="252" width="55" height="55" fill="rgba(167, 139, 250, 0.2)" stroke="var(--quantum-purple)" stroke-width="4" rx="8"/>
+                    <text x="357.5" y="287" text-anchor="middle" fill="var(--quantum-purple)" font-size="24" font-family="IBM Plex Mono" font-weight="600">H</text>
+                    
+                    <circle cx="500" cy="120" r="10" fill="var(--quantum-pink)" stroke="var(--quantum-pink)" stroke-width="3"/>
+                    <line x1="500" y1="120" x2="500" y2="200" stroke="var(--quantum-pink)" stroke-width="4"/>
+                    <circle cx="500" cy="200" r="24" fill="rgba(255, 0, 110, 0.1)" stroke="var(--quantum-pink)" stroke-width="4"/>
+                    <line x1="488" y1="200" x2="512" y2="200" stroke="var(--quantum-pink)" stroke-width="4"/>
+                    <line x1="500" y1="188" x2="500" y2="212" stroke="var(--quantum-pink)" stroke-width="4"/>
+                    
+                    <circle cx="650" cy="200" r="10" fill="var(--quantum-pink)" stroke="var(--quantum-pink)" stroke-width="3"/>
+                    <line x1="650" y1="200" x2="650" y2="280" stroke="var(--quantum-pink)" stroke-width="4"/>
+                    <circle cx="650" cy="280" r="24" fill="rgba(255, 0, 110, 0.1)" stroke="var(--quantum-pink)" stroke-width="4"/>
+                    <line x1="638" y1="280" x2="662" y2="280" stroke="var(--quantum-pink)" stroke-width="4"/>
+                    <line x1="650" y1="268" x2="650" y2="292" stroke="var(--quantum-pink)" stroke-width="4"/>
+                    
+                    <rect x="770" y="332" width="55" height="55" fill="rgba(167, 139, 250, 0.2)" stroke="var(--quantum-purple)" stroke-width="4" rx="8"/>
+                    <text x="797.5" y="367" text-anchor="middle" fill="var(--quantum-purple)" font-size="20" font-family="IBM Plex Mono" font-weight="600">Rz</text>
+                    
+                    <text x="550" y="420" text-anchor="middle" fill="var(--quantum-purple)" font-size="16" font-family="IBM Plex Mono">Gates</text>
+                </g>
+                
+                <!-- Stage 3: Entanglement -->
+                <g id="stage3" class="circuit-stage" opacity="0">
+                    <path d="M 850 120 Q 900 120, 900 160 Q 900 200, 950 200" stroke="var(--quantum-pink)" stroke-width="4" fill="none" stroke-dasharray="10,6" opacity="0.8"/>
+                    <path d="M 850 200 Q 900 200, 900 240 Q 900 280, 950 280" stroke="var(--quantum-pink)" stroke-width="4" fill="none" stroke-dasharray="10,6" opacity="0.8"/>
+                    <path d="M 850 280 Q 900 280, 900 320 Q 900 360, 950 360" stroke="var(--quantum-pink)" stroke-width="4" fill="none" stroke-dasharray="10,6" opacity="0.8"/>
+                    
+                    <circle cx="900" cy="160" r="6" fill="var(--quantum-pink)"/>
+                    <circle cx="900" cy="240" r="6" fill="var(--quantum-pink)"/>
+                    <circle cx="900" cy="320" r="6" fill="var(--quantum-pink)"/>
+                    
+                    <text x="900" y="420" text-anchor="middle" fill="var(--quantum-pink)" font-size="16" font-family="IBM Plex Mono">Entangle</text>
+                </g>
+                
+                <!-- Stage 4: Measurement -->
+                <g id="stage4" class="circuit-stage" opacity="0">
+                    <rect x="1000" y="92" width="65" height="50" fill="rgba(251, 191, 36, 0.1)" stroke="var(--accent-gold)" stroke-width="4" rx="8"/>
+                    <path d="M 1012 125 Q 1032.5 107, 1053 125" stroke="var(--accent-gold)" stroke-width="4" fill="none"/>
+                    <line x1="1032.5" y1="107" x2="1032.5" y2="97" stroke="var(--accent-gold)" stroke-width="4"/>
+                    
+                    <rect x="1000" y="172" width="65" height="50" fill="rgba(251, 191, 36, 0.1)" stroke="var(--accent-gold)" stroke-width="4" rx="8"/>
+                    <path d="M 1012 205 Q 1032.5 187, 1053 205" stroke="var(--accent-gold)" stroke-width="4" fill="none"/>
+                    <line x1="1032.5" y1="187" x2="1032.5" y2="177" stroke="var(--accent-gold)" stroke-width="4"/>
+                    
+                    <rect x="1000" y="252" width="65" height="50" fill="rgba(251, 191, 36, 0.1)" stroke="var(--accent-gold)" stroke-width="4" rx="8"/>
+                    <path d="M 1012 285 Q 1032.5 267, 1053 285" stroke="var(--accent-gold)" stroke-width="4" fill="none"/>
+                    <line x1="1032.5" y1="267" x2="1032.5" y2="257" stroke="var(--accent-gold)" stroke-width="4"/>
+                    
+                    <rect x="1000" y="332" width="65" height="50" fill="rgba(251, 191, 36, 0.1)" stroke="var(--accent-gold)" stroke-width="4" rx="8"/>
+                    <path d="M 1012 365 Q 1032.5 347, 1053 365" stroke="var(--accent-gold)" stroke-width="4" fill="none"/>
+                    <line x1="1032.5" y1="347" x2="1032.5" y2="337" stroke="var(--accent-gold)" stroke-width="4"/>
+                    
+                    <text x="1032.5" y="420" text-anchor="middle" fill="var(--accent-gold)" font-size="16" font-family="IBM Plex Mono">Measure</text>
+                </g>
+                
+                <!-- Output: Schrödinger's Cats -->
+                <g id="outputCats">
+                    <!-- Cat for q0 -->
+                    <g class="cat-output" id="cat0" transform="translate(1120, 120)">
+                        <rect x="-25" y="-25" width="50" height="50" fill="rgba(100, 100, 100, 0.1)" stroke="var(--quantum-blue)" stroke-width="2" rx="8" stroke-dasharray="4,4"/>
+                        <!-- Cat will be generated by JS -->
+                    </g>
+                    
+                    <!-- Cat for q1 -->
+                    <g class="cat-output" id="cat1" transform="translate(1120, 200)">
+                        <rect x="-25" y="-25" width="50" height="50" fill="rgba(100, 100, 100, 0.1)" stroke="var(--quantum-purple)" stroke-width="2" rx="8" stroke-dasharray="4,4"/>
+                    </g>
+                    
+                    <!-- Cat for q2 -->
+                    <g class="cat-output" id="cat2" transform="translate(1120, 280)">
+                        <rect x="-25" y="-25" width="50" height="50" fill="rgba(100, 100, 100, 0.1)" stroke="var(--quantum-pink)" stroke-width="2" rx="8" stroke-dasharray="4,4"/>
+                    </g>
+                    
+                    <!-- Cat for q3 -->
+                    <g class="cat-output" id="cat3" transform="translate(1120, 360)">
+                        <rect x="-25" y="-25" width="50" height="50" fill="rgba(100, 100, 100, 0.1)" stroke="var(--accent-gold)" stroke-width="2" rx="8" stroke-dasharray="4,4"/>
+                    </g>
+                    
+                    <text x="1120" y="420" text-anchor="middle" fill="var(--muted-text)" font-size="14" font-family="IBM Plex Mono" opacity="0.7">Output</text>
+                </g>
+                
+                <!-- Flowing Particles -->
+                <g id="flowingParticles">
+                    <circle cx="100" cy="120" r="7" fill="var(--quantum-blue)" class="flow-particle">
+                        <animate attributeName="cx" from="100" to="1050" dur="5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="100" cy="200" r="7" fill="var(--quantum-purple)" class="flow-particle">
+                        <animate attributeName="cx" from="100" to="1050" dur="5s" begin="1.25s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="5s" begin="1.25s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="100" cy="280" r="7" fill="var(--quantum-pink)" class="flow-particle">
+                        <animate attributeName="cx" from="100" to="1050" dur="5s" begin="2.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="5s" begin="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="100" cy="360" r="7" fill="var(--accent-gold)" class="flow-particle">
+                        <animate attributeName="cx" from="100" to="1050" dur="5s" begin="3.75s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="5s" begin="3.75s" repeatCount="indefinite"/>
+                    </circle>
+                </g>
+            </svg>
         </div>
     </section>
     
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Quantum Algorithms for <strong>Near-Term Applications</strong></h1>
-                <p class="hero-tagline">
-                    Building proprietary hybrid quantum algorithms that solve real-world problems in finance, 
-                    materials discovery, and optimization—today, not tomorrow.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">Partner with Us</a>
-                    <a href="#focus" class="btn-secondary">Our Technology</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <h3>NISQ</h3>
-                        <p>Near-Term Hybrid Algorithms</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>IP-First</h3>
-                        <p>Patent Strategy</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>100+</h3>
-                        <p>Qubit Hardware</p>
-                    </div>
-                </div>
+    <section class="cta-tagline">
+        <div class="tagline-container">
+            <div class="tagline-question">
+                <span class="emphasis-text">Fighting for Quantum Benchmarking towards Advantage?</span>
             </div>
-            <div class="quantum-visual">
-                <div class="quantum-sphere"></div>
-                <div class="quantum-sphere"></div>
-                <div class="quantum-sphere"></div>
+            <div class="tagline-cta">
+                Join <span class="brand-highlight">Open Braket</span> to <strong>accelerate your Business</strong>
+            </div>
+            <div class="tagline-subtitle">
+                A Team of Experts in Quantum Algorithms and Middleware
             </div>
         </div>
     </section>
     
-    <!-- Focus Areas Section -->
     <section id="focus" class="focus-areas">
         <div class="container">
             <div class="section-header">
                 <div class="section-label">Our Technology Stack</div>
                 <h2 class="section-title">Hybrid Quantum Algorithms for <strong>Real-World Impact</strong></h2>
                 <p class="section-description">
-                    We develop quantum algorithms optimized for current hardware devices for real-world problems, 
-                    bridging the gap between quantum potential and commercial deployment. We focus on fundamentals, 
-                    not hype. We are powered by excellent researchers and advisory members with internationally recognized experience.
+                    We develop quantum algorithms optimized for current hardware, bridging the gap between quantum potential and commercial deployment.
                 </p>
             </div>
             
@@ -756,7 +670,7 @@
                     <h3>Quantum for Finance</h3>
                     <p>
                         Advanced quantum algorithms for portfolio optimization, risk analysis, derivatives pricing, 
-                        and fraud detection using variational quantum circuits and quantum-enhanced Monte Carlo methods.
+                        and fraud detection using variational quantum circuits.
                     </p>
                     <ul class="focus-features">
                         <li>Portfolio optimization (VQE/QAOA)</li>
@@ -771,7 +685,7 @@
                     <h3>Materials Discovery</h3>
                     <p>
                         Quantum chemistry simulations for drug discovery, battery materials, catalysts, 
-                        and semiconductors using adaptive variational algorithms on real quantum hardware.
+                        and semiconductors using adaptive variational algorithms.
                     </p>
                     <ul class="focus-features">
                         <li>Molecular ground state calculations</li>
@@ -783,10 +697,10 @@
                 
                 <div class="focus-card">
                     <div class="focus-icon">∞</div>
-                    <h3>Hybrid Quantum-Classical</h3>
+                    <h3>Hybrid Quantum-Classical & Middleware</h3>
                     <p>
                         Proprietary quantum machine learning algorithms combining quantum feature maps, 
-                        kernel methods, and classical neural networks for enhanced predictive modeling.
+                        kernel methods, and classical neural networks.
                     </p>
                     <ul class="focus-features">
                         <li>Quantum reservoir computing</li>
@@ -795,54 +709,25 @@
                         <li>Variational quantum classifiers</li>
                     </ul>
                 </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- IP Strategy Section -->
-    <section id="ip" class="ip-section">
-        <div class="container">
-            <div class="ip-content">
-                <h2>An <strong>IP-First</strong> Quantum Computing Company</h2>
-                <p>
-                    Our competitive advantage lies in proprietary quantum algorithms protected by a robust 
-                    patent portfolio. We're building defensible intellectual property around shallow-circuit 
-                    architectures, error mitigation techniques, and application-specific quantum kernels.
-                </p>
-                <p>
-                    Every algorithm we develop is designed with IP protection in mind—from novel variational 
-                    ansätze to quantum-classical hybrid optimization strategies that deliver quantum advantage 
-                    on today's hardware.
-                </p>
                 
-                <div class="ip-metrics">
-                    <div class="metric-card">
-                        <h4>10+</h4>
-                        <p>Patents in Pipeline for Submission</p>
-                    </div>
-                    <div class="metric-card">
-                        <h4>High Impact</h4>
-                        <p>Publications in Quantum Research</p>
-                    </div>
-                    <div class="metric-card">
-                        <h4>Latest Hardware</h4>
-                        <p>Running Algorithms on Quantum Machines</p>
-                    </div>
-                    <div class="metric-card">
-                        <h4>Global</h4>
-                        <p>Hardware Partnerships</p>
-                    </div>
+                <div class="focus-card">
+                    <div class="focus-icon">🧠</div>
+                    <h3>Quantum-AI</h3>
+                    <p>
+                        Advanced quantum-enhanced artificial intelligence combining quantum computing with 
+                        machine learning for breakthrough performance.
+                    </p>
+                    <ul class="focus-features">
+                        <li>Quantum neural networks (QNN)</li>
+                        <li>Quantum generative adversarial networks</li>
+                        <li>Quantum reinforcement learning</li>
+                        <li>Quantum natural language processing</li>
+                    </ul>
                 </div>
             </div>
-            <div class="quantum-visual">
-                <div class="quantum-sphere"></div>
-                <div class="quantum-sphere"></div>
-                <div class="quantum-sphere"></div>
-            </div>
         </div>
     </section>
     
-    <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-header">
@@ -856,17 +741,11 @@
             
             <div class="contact-box">
                 <h3>Let's Build the Quantum Future Together</h3>
-                <p>Reach out to discuss partnerships, investments, or technical collaborations.</p>
                 <a href="mailto:director.openbraket@gmail.com" class="contact-email">director.openbraket@gmail.com</a>
-                <div class="hero-buttons">
-                    <a href="mailto:director.openbraket@gmail.com" class="btn-primary">Schedule a Call</a>
-                    <a href="research.html" class="btn-secondary">Learn More</a>
-                </div>
             </div>
         </div>
     </section>
     
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2026 Open Braket. Pioneering Quantum Algorithms for Near-Term Applications.</p>
@@ -875,42 +754,175 @@
     </footer>
     
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+        // Animation control
+        const stages = ['stage1', 'stage2', 'stage3', 'stage4'];
+        let currentStage = 0;
+        let animationPaused = false;
+        let animationTimeout = null;
+        let isHoveringCircuit = false;
+        
+        const svg = document.getElementById('quantumCircuit');
+        const flowingParticles = document.querySelectorAll('.flow-particle animate');
+        
+        // Hover to pause animation
+        svg.addEventListener('mouseenter', () => {
+            isHoveringCircuit = true;
+            animationPaused = true;
+            // Pause particle animations
+            flowingParticles.forEach(particle => {
+                particle.pauseAnimations();
+            });
+        });
+        
+        svg.addEventListener('mouseleave', () => {
+            isHoveringCircuit = false;
+            setTimeout(() => {
+                if (!isHoveringCircuit) {
+                    animationPaused = false;
+                    // Resume particle animations
+                    flowingParticles.forEach(particle => {
+                        particle.unpauseAnimations();
                     });
+                    if (animationTimeout) {
+                        startAnimation();
+                    }
+                }
+            }, 100);
+        });
+        
+        // Click on stages to toggle visibility
+        stages.forEach(stageId => {
+            const stageElement = document.getElementById(stageId);
+            stageElement.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const currentOpacity = parseFloat(stageElement.style.opacity);
+                if (currentOpacity > 0.5) {
+                    stageElement.style.opacity = '0';
+                    stageElement.style.transform = 'scale(0.8)';
+                } else {
+                    stageElement.style.opacity = '1';
+                    stageElement.style.transform = 'scale(1)';
+                    stageElement.classList.add('active');
+                    setTimeout(() => {
+                        stageElement.classList.remove('active');
+                    }, 2000);
                 }
             });
         });
         
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Create Schrödinger's cat SVG
+        function createCat(isAlive, color) {
+            const cat = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            
+            if (isAlive === 'superposition') {
+                // Superposition state - show both
+                cat.innerHTML = `
+                    <ellipse cx="0" cy="0" rx="18" ry="15" fill="${color}" opacity="0.4" class="cat-superposition"/>
+                    <text x="0" y="5" text-anchor="middle" font-size="20" fill="#fff">?</text>
+                    <circle cx="-6" cy="-5" r="3" fill="#000" opacity="0.5"/>
+                    <circle cx="6" cy="-5" r="3" fill="#000" opacity="0.5"/>
+                    <polygon points="-12,-10 -18,-15 -14,-8" fill="${color}" opacity="0.4"/>
+                    <polygon points="12,-10 18,-15 14,-8" fill="${color}" opacity="0.4"/>
+                `;
+                cat.classList.add('cat-superposition');
+            } else if (isAlive) {
+                // Alive cat
+                cat.innerHTML = `
+                    <ellipse cx="0" cy="0" rx="18" ry="15" fill="${color}" opacity="0.9"/>
+                    <circle cx="-6" cy="-5" r="3" fill="#000"/>
+                    <circle cx="6" cy="-5" r="3" fill="#000"/>
+                    <path d="M -4,2 Q 0,5 4,2" stroke="#000" stroke-width="2" fill="none"/>
+                    <polygon points="-12,-10 -18,-15 -14,-8" fill="${color}" opacity="0.9"/>
+                    <polygon points="12,-10 18,-15 14,-8" fill="${color}" opacity="0.9"/>
+                    <circle cx="-6" cy="-5" r="1" fill="#fff"/>
+                    <circle cx="6" cy="-5" r="1" fill="#fff"/>
+                `;
+                cat.classList.add('cat-alive');
+            } else {
+                // Dead cat
+                cat.innerHTML = `
+                    <ellipse cx="0" cy="0" rx="18" ry="15" fill="${color}" opacity="0.5"/>
+                    <line x1="-8" y1="-7" x2="-4" y2="-3" stroke="#000" stroke-width="2"/>
+                    <line x1="-4" y1="-7" x2="-8" y2="-3" stroke="#000" stroke-width="2"/>
+                    <line x1="4" y1="-7" x2="8" y2="-3" stroke="#000" stroke-width="2"/>
+                    <line x1="8" y1="-7" x2="4" y2="-3" stroke="#000" stroke-width="2"/>
+                    <polygon points="-12,-10 -18,-15 -14,-8" fill="${color}" opacity="0.4"/>
+                    <polygon points="12,-10 18,-15 14,-8" fill="${color}" opacity="0.4"/>
+                    <text x="0" y="20" text-anchor="middle" font-size="10" fill="#666">RIP</text>
+                `;
+                cat.classList.add('cat-dead');
+            }
+            
+            return cat;
+        }
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Generate random cats after measurement
+        function generateOutputCats() {
+            const colors = ['#00d4ff', '#a78bfa', '#ff006e', '#fbbf24'];
+            
+            for (let i = 0; i < 4; i++) {
+                const catContainer = document.getElementById(`cat${i}`);
+                // Clear previous cat
+                while (catContainer.childNodes.length > 1) {
+                    catContainer.removeChild(catContainer.lastChild);
                 }
-            });
-        }, observerOptions);
+                
+                // Random state: alive, dead, or superposition
+                const rand = Math.random();
+                let state;
+                if (rand < 0.4) {
+                    state = true; // alive
+                } else if (rand < 0.8) {
+                    state = false; // dead
+                } else {
+                    state = 'superposition'; // superposition
+                }
+                
+                const cat = createCat(state, colors[i]);
+                catContainer.appendChild(cat);
+            }
+        }
         
-        // Observe all cards for animation
-        document.querySelectorAll('.focus-card, .metric-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
+        // Animation sequence
+        function animateStages() {
+            if (animationPaused) {
+                animationTimeout = setTimeout(animateStages, 100);
+                return;
+            }
+            
+            stages.forEach(id => {
+                const el = document.getElementById(id);
+                el.style.opacity = '0';
+                el.classList.remove('active');
+            });
+            
+            const stage = document.getElementById(stages[currentStage]);
+            stage.style.opacity = '1';
+            stage.classList.add('active');
+            
+            // Generate cats when measurement stage appears
+            if (stages[currentStage] === 'stage4') {
+                setTimeout(generateOutputCats, 1000);
+            }
+            
+            setTimeout(() => {
+                stage.classList.remove('active');
+            }, 2000);
+            
+            currentStage = (currentStage + 1) % stages.length;
+            animationTimeout = setTimeout(animateStages, 2500);
+        }
+        
+        function startAnimation() {
+            if (animationTimeout) {
+                clearTimeout(animationTimeout);
+            }
+            setTimeout(animateStages, 500);
+        }
+        
+        // Initialize
+        startAnimation();
+        generateOutputCats();
     </script>
 </body>
 </html>
