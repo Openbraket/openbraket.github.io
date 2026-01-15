@@ -1,245 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance - Open Braket | Quantum Financial Intelligence</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance – Open Braket | Quantum Financial Intelligence</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- (CSS unchanged — omitted here for brevity, KEEP YOUR EXISTING CSS EXACTLY AS IS) -->
+<!-- KEEP YOUR ORIGINAL CSS EXACTLY AS IS -->
 </head>
 
 <body>
-    <!-- Navigation unchanged -->
 
-    <main class="animate-fade-in">
+<nav id="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">Open<span>Braket</span></a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="finance.html" class="active">Finance</a></li>
+      <li><a href="products.html">Materials</a></li>
+      <li><a href="index.html#contact" class="cta-button">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
 
-        <!-- Header Section -->
-        <section class="header-section">
-            <div class="header-content">
-                <div class="header-badge">
-                    Near-Term Financial Intelligence
-                </div>
+<main class="animate-fade-in">
 
-                <h1>
-                    Evidence-Driven <br>
-                    <span>Quantum Financial Intelligence</span>
-                </h1>
+<!-- HEADER -->
+<section class="header-section">
+  <div class="header-content">
+    <div class="header-badge">Near-Term Financial Intelligence</div>
 
-                <p>
-                    Exploring quantum algorithms for derivatives valuation, risk analytics, and portfolio optimization,
-                    demonstrated on current noisy intermediate-scale quantum (NISQ) hardware.
-                </p>
-            </div>
-        </section>
+    <h1>
+      Evidence-Driven<br>
+      <span>Quantum Financial Intelligence</span>
+    </h1>
 
-        <!-- Market Stats Section -->
-        <section class="market-stats-section">
-            <div class="stats-grid">
+    <p>
+      Exploring quantum algorithms for derivatives valuation, risk analytics,
+      and portfolio optimization, demonstrated on current NISQ-era hardware.
+    </p>
+  </div>
+</section>
 
-                <div class="stat-card">
-                    <div class="stat-number">$699T</div>
-                    <div class="stat-label">Global Derivatives Notional (Gross)</div>
-                    <div class="stat-source">BIS / ISDA</div>
-                </div>
+<!-- MARKET STATS -->
+<section class="market-stats-section">
+  <div class="stats-grid">
 
-                <div class="stat-card">
-                    <div class="stat-number">$130T+</div>
-                    <div class="stat-label">Global Assets Under Management</div>
-                    <div class="stat-source">McKinsey Global AM</div>
-                </div>
+    <div class="stat-card">
+      <div class="stat-number">$699T</div>
+      <div class="stat-label">Global Derivatives Notional (Gross)</div>
+      <div class="stat-source">BIS / ISDA</div>
+    </div>
 
-                <div class="stat-card">
-                    <div class="stat-number">$180–190T</div>
-                    <div class="stat-label">Projected AUM by 2030</div>
-                    <div class="stat-source">PwC Outlook</div>
-                </div>
+    <div class="stat-card">
+      <div class="stat-number">$130T+</div>
+      <div class="stat-label">Global Assets Under Management</div>
+      <div class="stat-source">McKinsey Global AM</div>
+    </div>
 
-                <div class="stat-card">
-                    <div class="stat-number">100+*</div>
-                    <div class="stat-label">Physical Qubits (NISQ Era)</div>
-                    <div class="stat-source">Vendor Roadmaps</div>
-                </div>
+    <div class="stat-card">
+      <div class="stat-number">$180–190T</div>
+      <div class="stat-label">Projected AUM by 2030</div>
+      <div class="stat-source">PwC Outlook</div>
+    </div>
 
-            </div>
-        </section>
+    <div class="stat-card">
+      <div class="stat-number">100+*</div>
+      <div class="stat-label">Physical Qubits (NISQ Era)</div>
+      <div class="stat-source">Vendor Roadmaps</div>
+    </div>
 
-        <!-- Why Quantum Finance -->
-        <section class="why-quantum-section">
-            <div class="why-quantum-content">
-                <h2 class="section-title">Why Quantum Computing for Finance?</h2>
-                <p class="section-subtitle">
-                    Certain financial workloads exhibit computational scaling challenges
-                    where quantum algorithms offer asymptotic advantages.
-                </p>
+  </div>
+</section>
 
-                <div class="why-list">
+<!-- WHY QUANTUM -->
+<section class="why-quantum-section">
+  <div class="why-quantum-content">
 
-                    <div class="why-item">
-                        <h3>1. High-Dimensional State Representation</h3>
-                        <p>
-                            Quantum systems represent portfolio configurations in a Hilbert space of dimension
-                            <code>2<sup>n</sup></code> using <code>n</code> qubits, enabling parallel amplitude encoding.
-                            This does not replace classical memory, but enables new algorithmic primitives
-                            inaccessible to classical architectures.
-                        </p>
-                    </div>
+    <h2 class="section-title">Why Quantum Computing for Finance?</h2>
+    <p class="section-subtitle">
+      Certain financial workloads face scaling limits where quantum algorithms
+      offer new computational pathways.
+    </p>
 
-                    <div class="why-item">
-                        <h3>2. Quadratic Monte Carlo Speedup (Asymptotic)</h3>
-                        <p>
-                            Classical Monte Carlo converges as <code>O(1/√N)</code>, while Quantum Amplitude Estimation
-                            achieves <code>O(1/N)</code> query complexity.
-                            Practical realization on near-term hardware remains an active area of research.
-                        </p>
-                    </div>
+    <div class="why-list">
 
-                    <div class="why-item">
-                        <h3>3. Combinatorial Optimization Structure</h3>
-                        <p>
-                            Portfolio optimization with cardinality, transaction costs, and regulatory constraints
-                            leads to NP-hard problems.
-                            Quantum Approximate Optimization Algorithm (QAOA) provides a variational framework
-                            to explore these landscapes heuristically.
-                        </p>
-                    </div>
+      <div class="why-item">
+        <h3>High-Dimensional State Representation</h3>
+        <p>
+          Quantum systems represent portfolio configurations in Hilbert spaces of
+          dimension <code>2ⁿ</code> using <code>n</code> qubits, enabling parallel
+          amplitude encoding rather than classical data compression.
+        </p>
+      </div>
 
-                    <div class="why-item">
-                        <h3>4. Emerging Hardware Capability</h3>
-                        <p>
-                            Modern superconducting and trapped-ion processors report
-                            >99.9% single-qubit gate fidelities in benchmark settings.
-                            Multi-qubit noise and circuit depth remain limiting factors,
-                            motivating hybrid quantum-classical workflows.
-                        </p>
-                    </div>
+      <div class="why-item">
+        <h3>Monte Carlo Acceleration (Asymptotic)</h3>
+        <p>
+          Quantum Amplitude Estimation offers <code>O(1/ε)</code> query complexity
+          compared to <code>O(1/ε²)</code> classical Monte Carlo, with practical
+          performance under active investigation.
+        </p>
+      </div>
 
-                    <div class="why-item">
-                        <h3>5. Regulatory and Computational Pressure</h3>
-                        <p>
-                            Stress testing and risk simulations required by Basel III / FRTB
-                            impose significant recurring computational costs on large institutions.
-                            Algorithmic acceleration is increasingly explored alongside hardware scaling.
-                        </p>
-                    </div>
+      <div class="why-item">
+        <h3>Combinatorial Optimization Structure</h3>
+        <p>
+          Portfolio optimization with cardinality, transaction costs,
+          and regulatory constraints is NP-hard.
+          QAOA provides a variational heuristic framework for exploration.
+        </p>
+      </div>
 
-                </div>
-            </div>
-        </section>
+      <div class="why-item">
+        <h3>Emerging Hardware Capability</h3>
+        <p>
+          Current processors demonstrate high single-qubit fidelities,
+          while multi-qubit noise motivates shallow circuits
+          and hybrid workflows.
+        </p>
+      </div>
 
-        <!-- Middleware Section -->
-        <section class="middleware-section">
-            <div class="middleware-grid">
+      <div class="why-item">
+        <h3>Regulatory & Computational Pressure</h3>
+        <p>
+          Basel III / FRTB stress testing imposes recurring large-scale
+          compute requirements, motivating algorithmic acceleration research.
+        </p>
+      </div>
 
-                <div class="middleware-content">
-                    <div class="middleware-label">Core Infrastructure</div>
-                    <h2>Quantum <strong>Middleware</strong></h2>
-                    <p>
-                        Open Braket develops hardware-agnostic quantum middleware that abstracts
-                        backend-specific noise, compilation, and execution characteristics.
-                        The focus is on experimentation, benchmarking, and workflow integration.
-                    </p>
-                    <a href="index.html#contact" class="middleware-cta">Request Technical Discussion</a>
-                </div>
+    </div>
+  </div>
+</section>
 
-                <div class="middleware-visual">
-                    <h3>Quantum Accelerator</h3>
-                    <p>Experimental execution across quantum processors and HPC environments</p>
-                </div>
+<!-- CAPABILITIES (GESTURES RESTORED) -->
+<section class="capabilities-section">
+<h2>Institutional <strong>Exploration Areas</strong></h2>
 
-            </div>
-        </section>
+<div class="capabilities-grid">
 
-        <!-- Capabilities Section -->
-        <section class="capabilities-section">
-            <h2>Institutional <strong>Exploration Areas</strong></h2>
+<!-- PORTFOLIO OPT -->
+<div class="feature-card">
+  <div class="feature-icon">📊</div>
+  <h3>Portfolio Optimization</h3>
 
-            <div class="capabilities-grid">
+  <div class="feature-summary">
+    <p>Exploratory QAOA-based optimization under realistic constraints.</p>
+  </div>
 
-                <!-- Portfolio Optimization -->
-                <div class="feature-card">
-                    <h3>Portfolio Optimization</h3>
-                    <p>
-                        Exploratory use of QAOA-style variational algorithms
-                        for constrained portfolio selection problems.
-                        Current work focuses on small-to-medium problem instances.
-                    </p>
-                </div>
+  <div class="feature-details">
+    <h4>QAOA (Exploratory)</h4>
+    <p>
+      Variational circuits encode portfolio cost functions as Hamiltonians.
+      Focus is on approximation quality, constraint handling,
+      and noise sensitivity.
+    </p>
+    <div class="algorithm-formula">
+H = Σ σᵢⱼ wᵢwⱼ − μ Σ rᵢ wᵢ
+    </div>
+  </div>
 
-                <!-- Derivative Pricing -->
-                <div class="feature-card">
-                    <h3>Derivative Pricing</h3>
-                    <p>
-                        Investigation of Quantum Amplitude Estimation for pricing
-                        European and path-dependent derivatives,
-                        with emphasis on algorithmic structure rather than near-term speedups.
-                    </p>
-                </div>
+  <div class="feature-footer">
+    <div class="feature-highlight">NP-Hard Structure</div>
+    <div class="feature-metric">Small–Medium n</div>
+  </div>
+</div>
 
-                <!-- Risk Analytics -->
-                <div class="feature-card">
-                    <h3>Risk & Time-Series Analytics</h3>
-                    <p>
-                        Hybrid quantum-classical models for volatility estimation
-                        and scenario analysis using shallow parametrized circuits.
-                    </p>
-                </div>
+<!-- DERIVATIVES -->
+<div class="feature-card">
+  <div class="feature-icon">📈</div>
+  <h3>Derivative Pricing</h3>
 
-                <!-- Quantum-Safe Security (Exploratory) -->
-                <div class="feature-card">
-                    <h3>Quantum-Safe Security (Exploratory)</h3>
-                    <p>
-                        Open Braket tracks post-quantum cryptography standards and
-                        quantum-safe migration strategies as an exploratory research direction.
-                        This is not a commercial security product offering.
-                    </p>
-                </div>
+  <div class="feature-summary">
+    <p>Amplitude-estimation-based pricing models.</p>
+  </div>
 
-                <!-- Fraud Detection -->
-                <div class="feature-card">
-                    <h3>Fraud & Anomaly Detection</h3>
-                    <p>
-                        Experimental evaluation of quantum kernel methods
-                        for high-dimensional anomaly detection,
-                        benchmarked against classical baselines.
-                    </p>
-                </div>
+  <div class="feature-details">
+    <h4>Quantum Amplitude Estimation</h4>
+    <p>
+      Investigates asymptotic improvements over Monte Carlo
+      with attention to circuit depth and noise tradeoffs.
+    </p>
+  </div>
 
-                <!-- Risk Middleware -->
-                <div class="feature-card">
-                    <h3>Risk Middleware</h3>
-                    <p>
-                        Middleware tools for managing hybrid execution,
-                        error mitigation experiments, and reproducible benchmarking
-                        across multiple quantum backends.
-                    </p>
-                </div>
+  <div class="feature-footer">
+    <div class="feature-highlight">Quadratic Scaling</div>
+    <div class="feature-metric">Algorithmic Focus</div>
+  </div>
+</div>
 
-            </div>
-        </section>
+<!-- RISK -->
+<div class="feature-card">
+  <div class="feature-icon">⏱️</div>
+  <h3>Risk & Time-Series Analytics</h3>
 
-        <!-- CTA -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2>Engage in Early-Stage Quantum Exploration</h2>
-                <p>
-                    Open Braket collaborates with institutions interested in
-                    responsible, evidence-based exploration of quantum algorithms
-                    for finance.
-                </p>
-                <a href="mailto:director.openbraket@gmail.com" class="cta-button-large">
-                    Start a Technical Conversation
-                </a>
-            </div>
-        </section>
+  <div class="feature-summary">
+    <p>Hybrid quantum-classical volatility modeling.</p>
+  </div>
 
-    </main>
+  <div class="feature-details">
+    <p>
+      Shallow parametrized circuits evaluated for
+      scenario analysis and sensitivity studies.
+    </p>
+  </div>
 
-    <!-- Footer unchanged -->
+  <div class="feature-footer">
+    <div class="feature-highlight">Hybrid Models</div>
+    <div class="feature-metric">Shallow Circuits</div>
+  </div>
+</div>
+
+<!-- QUANTUM SAFE -->
+<div class="feature-card">
+  <div class="feature-icon">🔐</div>
+  <h3>Quantum-Safe Security (Exploratory)</h3>
+
+  <div class="feature-summary">
+    <p>Tracking post-quantum cryptography evolution.</p>
+  </div>
+
+  <div class="feature-details">
+    <p>
+      Open Braket monitors NIST PQC standards and
+      quantum-safe migration strategies as a
+      **non-commercial exploratory research direction**.
+    </p>
+  </div>
+
+  <div class="feature-footer">
+    <div class="feature-highlight">Research Tracking</div>
+    <div class="feature-metric">Non-Product</div>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+<div class="cta-content">
+  <h2>Engage in Responsible Quantum Exploration</h2>
+  <p>
+    We collaborate with institutions interested in
+    evidence-based quantum experimentation for finance.
+  </p>
+  <a href="mailto:director.openbraket@gmail.com" class="cta-button-large">
+    Start a Technical Conversation
+  </a>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="footer-content">
+  <span>Open Braket</span>
+  <span>Bangalore • Dubai (upcoming)</span>
+  <span>© 2026</span>
+</div>
+</footer>
 
 </body>
 </html>
