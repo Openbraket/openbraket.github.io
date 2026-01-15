@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Braket | Quantum Financial Intelligence</title>
+    <title>Finance - Open Braket | Quantum Financial Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; transition: background-color 0.5s ease; }
+        :root {
+            --quantum-blue: #00d4ff;
+            --quantum-purple: #a78bfa;
+            --deep-space: #020617;
+            --dark-matter: #0f172a;
+            scroll-behavior: smooth;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--deep-space); 
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
         .serif { font-family: 'Crimson Pro', serif; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        .font-mono-plex { font-family: 'IBM Plex Mono', monospace; }
-        .selection-cyan::selection { background-color: rgba(6, 182, 212, 0.3); color: #22d3ee; }
-        
+        .mono { font-family: 'IBM Plex Mono', monospace; }
+        .selection-cyan::selection { background-color: rgba(0, 212, 255, 0.3); color: #00d4ff; }
+
         /* Navigation Style matching requested formatting */
         nav .container {
             max-width: 1200px;
@@ -29,6 +39,7 @@
             display: flex;
             list-style: none;
             gap: 2.5rem;
+            align-items: center;
         }
         nav a {
             color: #9ca3af;
@@ -37,250 +48,236 @@
             transition: color 0.3s;
         }
         nav a:hover {
-            color: #00d4ff;
+            color: var(--quantum-blue);
         }
         .cta-button {
-            background: linear-gradient(135deg, #00d4ff, #a78bfa);
+            background: linear-gradient(135deg, var(--quantum-blue), var(--quantum-purple));
             color: white !important;
             padding: 0.7rem 1.8rem;
             border-radius: 6px;
             font-weight: 500;
         }
-        
-        @media print { .no-print { display: none !important; } }
+
+        /* Quantum Background from index.html */
+        .quantum-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at top, #0f172a 0%, #020617 100%);
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            background: var(--quantum-blue);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+            opacity: 0.2;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); opacity: 0.1; }
+            50% { transform: translate(30px, -40px); opacity: 0.4; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
     </style>
 </head>
 <body class="selection-cyan">
+    <div class="quantum-bg">
+        <div class="particle" style="width: 3px; height: 3px; top: 15%; left: 10%;"></div>
+        <div class="particle" style="width: 2px; height: 2px; top: 35%; left: 25%; animation-delay: 2s;"></div>
+        <div class="particle" style="width: 4px; height: 4px; top: 55%; left: 45%; animation-delay: 4s; background: var(--quantum-purple);"></div>
+        <div class="particle" style="width: 2px; height: 2px; top: 75%; left: 65%; animation-delay: 6s;"></div>
+    </div>
+
     <div id="root"></div>
 
     <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@^19.0.0/client",
-    "lucide-react": "https://esm.sh/lucide-react@^0.471.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
-  }
-}
-</script>
+    {
+      "imports": {
+        "react": "https://esm.sh/react@19.0.0",
+        "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+        "lucide-react": "https://esm.sh/lucide-react@0.471.0"
+      }
+    }
+    </script>
 
     <script type="module">
         import React, { useState, useEffect } from 'react';
         import { createRoot } from 'react-dom/client';
         import { 
+          Target, 
           ShieldCheck, 
-          Zap, 
-          Cpu, 
-          ChevronRight, 
-          Mail, 
-          ArrowUpRight,
-          Target,
-          LineChart,
-          Network,
-          Globe,
-          Layout,
-          ArrowLeft,
-          FileText
+          Network, 
+          ArrowUpRight, 
+          TrendingUp, 
+          Globe, 
+          Cpu,
+          Zap
         } from 'lucide-react';
 
-        const CapabilityCard = ({ icon, title, description, metric, highlight }) => (
-          <div className="p-8 bg-slate-900/40 border border-slate-800 rounded-2xl hover:border-slate-700 hover:bg-slate-900/60 transition-all group">
+        const FeatureCard = ({ icon: Icon, title, description, metric, highlight }) => (
+          <div className="p-8 bg-slate-900/40 border border-slate-800 rounded-2xl hover:border-cyan-500/30 hover:bg-slate-900/60 transition-all group backdrop-blur-sm">
             <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform text-cyan-400">
-              {icon}
+              <Icon size={24} />
             </div>
             <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6">{description}</p>
-            <div className="flex items-center justify-between pt-4 border-t border-slate-800/50">
-              <div className="text-xs font-mono text-cyan-500 uppercase font-bold">{highlight}</div>
-              <div className="text-xs font-mono text-slate-500">{metric}</div>
-            </div>
-          </div>
-        );
-
-        const RoadmapItem = ({ year, phase, description, status }) => (
-          <div className="relative pl-10 before:absolute before:left-0 before:top-2 before:w-px before:h-[calc(100%+3rem)] before:bg-gradient-to-b before:from-cyan-500 before:to-transparent last:before:h-8">
-            <div className="absolute left-[-5px] top-2 w-[11px] h-[11px] rounded-full bg-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.8)]"></div>
-            <div className="p-8 bg-slate-900/50 border border-slate-800 rounded-2xl">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <span className="text-cyan-500 font-mono text-sm font-bold">{year}</span>
-                  <h3 className="text-2xl font-bold text-white mt-1">{phase}</h3>
-                </div>
-                <span className="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                  {status}
-                </span>
-              </div>
-              <p className="text-slate-400 leading-relaxed italic">{description}</p>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6 font-sans">{description}</p>
+            <div className="flex items-center justify-between pt-4 border-t border-slate-800/50 font-mono">
+              <div className="text-[10px] text-cyan-500 uppercase font-bold tracking-wider">{highlight}</div>
+              <div className="text-[10px] text-slate-500">{metric}</div>
             </div>
           </div>
         );
 
         const App = () => {
-          const [view, setView] = useState('platform');
           const [isScrolled, setIsScrolled] = useState(false);
 
           useEffect(() => {
             const handleScroll = () => setIsScrolled(window.scrollY > 50);
             window.addEventListener('scroll', handleScroll);
-            window.scrollTo(0, 0);
             return () => window.removeEventListener('scroll', handleScroll);
-          }, [view]);
-
-          const isDark = view === 'platform';
+          }, []);
 
           return (
-            <div className={`min-h-screen flex flex-col transition-colors duration-700 ${isDark ? 'bg-[#020617] text-slate-200' : 'bg-slate-50 text-slate-900'}`}>
-              
-              {/* Universal Nav exactly as requested structure */}
-              <nav className={`fixed top-0 w-full z-50 transition-all duration-300 no-print ${isScrolled ? (isDark ? 'bg-slate-950/80 border-b border-slate-800' : 'bg-white/80 border-b border-slate-200') + ' backdrop-blur-md py-3' : 'bg-transparent py-6'}`}>
+            <div className="min-h-screen flex flex-col">
+              {/* Navigation */}
+              <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-950/90 border-b border-slate-800 backdrop-blur-md py-3' : 'bg-transparent py-6'}`}>
                 <div className="container">
-                  <a href="index.html" className="logo font-mono-plex flex items-center gap-2" style={{fontSize: '1.5rem', fontWeight: 600, color: '#00d4ff'}}>
-                    Open<span className={isDark ? 'text-white' : 'text-slate-900'}>Braket</span>
+                  <a href="index.html" className="logo" style={{fontFamily: "'IBM Plex Mono', monospace", fontSize: "1.5rem", fontWeight: 600, color: "#00d4ff", textDecoration: "none"}}>
+                    Open<span style={{color: "#e8edf5"}}>Braket</span>
                   </a>
                   <ul className="hidden md:flex">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="finance.html">Finance</a></li>
+                    <li><a href="finance.html" className="text-cyan-400">Finance</a></li>
                     <li><a href="products.html">Materials</a></li>
-                    <li><a href="#contact" className="cta-button">Contact Us</a></li>
+                    <li><a href="index.html#contact" className="cta-button">Contact Us</a></li>
                   </ul>
                 </div>
               </nav>
 
-              {view === 'platform' ? (
-                /* PLATFORM VIEW */
-                <div className="animate-in fade-in duration-700">
-                  <section className="relative pt-40 pb-20 overflow-hidden">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] pointer-events-none opacity-40 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent"></div>
-                    <div className="max-w-7xl mx-auto px-6 relative z-10">
-                      <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 border border-cyan-500/30 text-cyan-400 text-xs font-bold tracking-widest uppercase mb-6">
-                          <Zap size={14} /> Near-Term Quantum Deployment
-                        </div>
-                        <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-8">
-                          Quantum-Accelerated <br />
-                          <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-clip-text text-transparent">Financial Intelligence</span>
-                        </h1>
-                        <p className="text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl">
-                          Open Braket resolves computational bottlenecks in derivatives pricing and high-dimensional risk modeling. We deploy deterministic quantum speedups onto validated hardware.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 mb-16">
-                          <a href="finance.html" className="group flex items-center justify-center gap-2 px-8 py-4 bg-cyan-600 text-white font-bold rounded-lg hover:bg-cyan-500 transition-all shadow-lg shadow-cyan-600/20">
-                            Explore Finance
-                            <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                          </a>
-                          <a href="mailto:director.openbraket@gmail.com" className="flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 border border-slate-700 text-white font-bold rounded-lg hover:bg-slate-700 transition-all">
-                            Initiate Dialogue
-                          </a>
-                        </div>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-slate-800/50">
-                          <div>
-                            <div className="text-2xl font-mono font-bold text-white">$700T</div>
-                            <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Addressable Market</div>
-                          </div>
-                          <div>
-                            <div className="text-2xl font-mono font-bold text-white">1/N</div>
-                            <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Target Convergence</div>
-                          </div>
-                          <div>
-                            <div className="text-2xl font-mono font-bold text-white">Bangalore</div>
-                            <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Operational HQ</div>
-                          </div>
-                          <div>
-                            <div className="text-2xl font-mono font-bold text-white">Dubai</div>
-                            <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">(upcoming office)</div>
-                          </div>
-                        </div>
-                      </div>
+              {/* Main Content */}
+              <main className="animate-fade-in">
+                {/* Header Section */}
+                <section className="pt-48 pb-20 text-center px-6">
+                  <div className="max-w-4xl mx-auto">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 border border-cyan-500/30 text-cyan-400 text-[10px] font-mono font-bold tracking-widest uppercase mb-8">
+                      <Zap size={14} /> Near-Term Financial Intelligence
                     </div>
-                  </section>
-
-                  <section id="computational-advantage" className="py-24">
-                    <div className="max-w-7xl mx-auto px-6">
-                      <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-4xl font-bold text-white mb-6">Capability Architecture</h2>
-                        <p className="text-lg text-slate-400">
-                          Direct deployment of Quantum Amplitude Estimation (QAE) and Variational kernels for institutional alpha.
-                        </p>
-                      </div>
-                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <CapabilityCard 
-                          icon={<Target />}
-                          title="Derivative Valuation"
-                          description="Quantum-enhanced pricing models for exotic options with quadratic speedup (1/N) vs classical MCS (1/√N)."
-                          metric="O(1/ε) Performance"
-                          highlight="Pricing Accuracy"
-                        />
-                        <CapabilityCard 
-                          icon={<LineChart />}
-                          title="Portfolio Optimization"
-                          description="Solving NP-hard combinatorial optimization challenges under real-world liquidity and regulatory constraints."
-                          metric="Polynomial Gains"
-                          highlight="Asset Allocation"
-                        />
-                        <CapabilityCard 
-                          icon={<ShieldCheck />}
-                          title="Unified Middleware"
-                          description="Hardware-agnostic middleware for seamless switching between superconducting and trapped-ion backends."
-                          metric="Unified API Tier"
-                          highlight="Middleware Ready"
-                        />
-                      </div>
-                    </div>
-                  </section>
-
-                  <section id="roadmap" className="py-24 bg-slate-950">
-                    <div className="max-w-7xl mx-auto px-6">
-                      <div className="flex flex-col md:flex-row gap-12 items-start">
-                        <div className="md:w-1/3 sticky top-32">
-                          <h2 className="text-4xl font-bold text-white mb-6">Global Deployment</h2>
-                          <p className="text-slate-400 leading-relaxed mb-8">
-                            Scaling our infrastructure across key financial innovation hubs to bridge quantum theory with production trading.
-                          </p>
-                          <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
-                            <div className="text-cyan-500 font-bold mb-2 flex items-center gap-2"><Globe size={18}/> Strategic Expansion</div>
-                            <p className="text-xs text-slate-500">Currently finalizing the infrastructure for our <b>Dubai (upcoming office)</b> to serve EMEA institutional partners.</p>
-                          </div>
-                        </div>
-                        <div className="md:w-2/3 space-y-12">
-                          <RoadmapItem year="2024-2025" phase="Pilot Integration" description="Deployment of QAE-based pricing for tier-1 credit derivatives. Operational benchmarks on hardware in Bangalore." status="Active" />
-                          <RoadmapItem year="2025-2026" phase="Regional Activation" description="Launch of Dubai (upcoming office) operational hub. Integration with regional sovereign funds." status="Scheduled" />
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-
-                  <section id="contact" className="py-24 text-center">
-                    <div className="max-w-4xl mx-auto px-6">
-                      <h2 className="text-4xl font-bold text-white mb-8">Secure the Quantum Advantage</h2>
-                      <div className="flex justify-center gap-6">
-                        <a href="finance.html" className="px-10 py-5 bg-white text-slate-950 font-bold rounded-xl hover:bg-slate-100 transition-all shadow-xl">
-                          Finance Platform
-                        </a>
-                        <a href="mailto:director.openbraket@gmail.com" className="px-10 py-5 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-all border border-slate-700">
-                          Initiate Dialogue
-                        </a>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              ) : (
-                /* WHITEPAPER VIEW (if ever needed back) */
-                <div className="p-40 text-center">
-                  <button onClick={() => setView('platform')}>Back</button>
-                </div>
-              )}
-
-              <footer className={`py-12 border-t no-print ${isDark ? 'border-slate-900 bg-[#020617]' : 'border-slate-200 bg-white'}`}>
-                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-                  <div className="flex items-center gap-2">
-                    <div className={`w-6 h-6 rounded flex items-center justify-center font-bold text-[10px] ${isDark ? 'bg-slate-800 text-white' : 'bg-slate-200 text-slate-900'}`}>
-                      [ ]
-                    </div>
-                    <span className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Open Braket</span>
+                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 serif">
+                      Deterministic <br />
+                      <span className="text-cyan-400">Financial Advantage</span>
+                    </h1>
+                    <p className="text-xl text-slate-400 max-w-2xl mx-auto serif italic leading-relaxed">
+                      Deploying production-ready quantum kernels for institutional derivatives valuation, risk management, and high-frequency alpha generation.
+                    </p>
                   </div>
-                  <div className="text-slate-500 text-sm">
+                </section>
+
+                {/* Middleware Hero Section */}
+                <section className="py-20 bg-slate-900/40 backdrop-blur-sm">
+                    <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div className="font-mono text-cyan-500 text-xs uppercase tracking-widest mb-4">Core Infrastructure</div>
+                            <h2 className="text-4xl font-bold text-white mb-6 serif">Proprietary <strong>Middleware</strong></h2>
+                            <p className="text-lg text-slate-400 mb-8 serif leading-relaxed">
+                                Our institutional <strong>Middleware</strong> abstracts quantum hardware noise, providing a unified API for seamless execution across the world's most powerful QPUs. We resolve the "valuation gap" in the $700T derivatives market.
+                            </p>
+                            <div className="flex gap-4 font-sans">
+                                <a href="index.html#contact" className="px-8 py-4 bg-cyan-600 text-white font-bold rounded-lg hover:bg-cyan-500 transition-all">Request Strategic Consult</a>
+                            </div>
+                        </div>
+                        <div className="bg-slate-800/60 border border-slate-700 p-12 rounded-2xl text-center shadow-2xl">
+                            <div className="text-7xl mb-6">₿</div>
+                            <h3 className="text-cyan-400 text-2xl font-bold mb-4 font-mono">Quant Accelerator</h3>
+                            <p className="text-slate-400 italic serif">Optimized for Bangalore and Dubai (upcoming office).</p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Capabilities Grid */}
+                <section className="py-24">
+                  <div className="max-w-7xl mx-auto px-6">
+                    <h2 className="text-3xl font-bold text-center text-white mb-16 serif uppercase tracking-wider">Institutional <strong>Capabilities</strong></h2>
+                    <div className="grid md:grid-cols-3 gap-8">
+                      <FeatureCard 
+                        icon={TrendingUp}
+                        title="Derivative Pricing"
+                        description="Quantum Amplitude Estimation (QAE) achieving quadratic convergence (1/N) compared to classical Monte Carlo (1/√N)."
+                        metric="O(1/ε) Accuracy"
+                        highlight="Compute Efficiency"
+                      />
+                      <FeatureCard 
+                        icon={ShieldCheck}
+                        title="Post-Quantum Security"
+                        description="Deployment of NIST-standard PQC layers to future-proof institutional ledger data from decryption threats."
+                        metric="NIST-v1 Ready"
+                        highlight="Asset Security"
+                      />
+                      <FeatureCard 
+                        icon={Network}
+                        title="Risk Middleware"
+                        description="High-fidelity unified middleware that manages multi-backend execution with automated error mitigation."
+                        metric="Unified API Tier"
+                        highlight="Middleware Layer"
+                      />
+                    </div>
+                  </div>
+                </section>
+
+                {/* Industry Use Cases */}
+                <section className="py-24 bg-slate-900/30">
+                  <div className="max-w-5xl mx-auto px-6">
+                    <h2 className="text-3xl font-bold text-center text-white mb-16 serif">Global Industry <strong>Impact</strong></h2>
+                    <div className="space-y-6">
+                      <div className="p-8 bg-slate-800/40 border-l-4 border-cyan-500 rounded-r-xl">
+                        <h4 className="text-cyan-400 font-bold mb-3 font-mono text-sm tracking-widest uppercase">Portfolio Optimization</h4>
+                        <p className="text-slate-400 serif text-lg">Resolving NP-hard asset allocation challenges under real-world liquidity constraints. We achieve faster rebalancing for large-scale institutional funds.</p>
+                      </div>
+                      <div className="p-8 bg-slate-800/40 border-l-4 border-purple-500 rounded-r-xl">
+                        <h4 className="text-purple-400 font-bold mb-3 font-mono text-sm tracking-widest uppercase">Real-Time Risk Analytics</h4>
+                        <p className="text-slate-400 serif text-lg">Calculate Delta, Gamma, and Vega sensitivity on live market feeds with a 10x reduction in hardware overhead.</p>
+                      </div>
+                      <div className="p-8 bg-slate-800/40 border-l-4 border-pink-500 rounded-r-xl">
+                        <h4 className="text-pink-400 font-bold mb-3 font-mono text-sm tracking-widest uppercase">Fraud Intelligence</h4>
+                        <p className="text-slate-400 serif text-lg">Utilizing Quantum SVMs to detect anomalous patterns in high-dimensional transaction data with superior recall rates.</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* CTA Section */}
+                <section className="py-32 text-center px-6">
+                  <div className="max-w-3xl mx-auto">
+                    <h2 className="text-4xl font-bold text-white mb-8 serif">Lead the Quantum Transition</h2>
+                    <p className="text-xl text-slate-400 mb-12 serif italic">
+                      Open Braket is engaging with visionary partners to deploy the first production-ready financial quantum stack. Serving Bangalore and Dubai (upcoming office).
+                    </p>
+                    <a href="mailto:director.openbraket@gmail.com" className="cta-button" style={{fontSize: "1.1rem", padding: "1rem 2.5rem", borderRadius: "8px"}}>
+                      Inquire Strategically
+                    </a>
+                  </div>
+                </section>
+              </main>
+
+              {/* Footer */}
+              <footer className="py-12 border-t border-slate-900 bg-slate-950/80 backdrop-blur-sm">
+                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 font-mono text-[10px] tracking-widest text-slate-500 uppercase">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-slate-800 rounded flex items-center justify-center font-bold text-white">[ ]</div>
+                    <span className="text-sm font-bold tracking-tighter text-slate-300">Open Braket</span>
+                  </div>
+                  <div>
                     Bangalore • Dubai (upcoming office) • Engineering the Quantitative Future
+                  </div>
+                  <div>
+                    &copy; 2024 Open Braket
                   </div>
                 </div>
               </footer>
