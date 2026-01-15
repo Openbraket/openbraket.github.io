@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Braket | Quantum Financial Infrastructure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #020617; color: #e2e8f0; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .selection-cyan::selection { background-color: rgba(6, 182, 212, 0.3); color: #22d3ee; }
+    </style>
+</head>
+<body class="selection-cyan">
+    <div id="root"></div>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@^19.0.0",
+        "react-dom/client": "https://esm.sh/react-dom@^19.0.0/client",
+        "lucide-react": "https://esm.sh/lucide-react@^0.471.0"
+      }
+    }
+    </script>
+
+    <script type="module">
+        import React, { useState, useEffect } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import { 
+          ShieldCheck, 
+          BarChart3, 
+          Zap, 
+          Cpu, 
+          ChevronRight, 
+          Mail, 
+          ArrowUpRight,
+          Target,
+          LineChart,
+          Network,
+          Globe
+        } from 'lucide-react';
+
+        const CapabilityCard = ({ icon, title, description, metric, highlight }) => (
+          <div className="p-8 bg-slate-900/40 border border-slate-800 rounded-2xl hover:border-slate-700 hover:bg-slate-900/60 transition-all group">
+            <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              {icon}
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6">{description}</p>
+            <div className="flex items-center justify-between pt-4 border-t border-slate-800/50">
+              <div className="text-xs font-mono text-cyan-500 uppercase font-bold">{highlight}</div>
+              <div className="text-xs font-mono text-slate-500">{metric}</div>
+            </div>
+          </div>
+        );
+
+        const RoadmapItem = ({ year, phase, description, status }) => (
+          <div className="relative pl-10 before:absolute before:left-0 before:top-2 before:w-px before:h-[calc(100%+3rem)] before:bg-gradient-to-b before:from-cyan-500 before:to-transparent last:before:h-8">
+            <div className="absolute left-[-5px] top-2 w-[11px] h-[11px] rounded-full bg-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.8)]"></div>
+            <div className="p-8 bg-slate-900/50 border border-slate-800 rounded-2xl">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <span className="text-cyan-500 font-mono text-sm font-bold">{year}</span>
+                  <h3 className="text-2xl font-bold text-white mt-1">{phase}</h3>
+                </div>
+                <span className="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                  {status}
+                </span>
+              </div>
+              <p className="text-slate-400 leading-relaxed italic">{description}</p>
+            </div>
+          </div>
+        );
+
+        const App = () => {
+          const [isScrolled, setIsScrolled] = useState(false);
+
+          useEffect(() => {
+            const handleScroll = () => setIsScrolled(window.scrollY > 50);
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+          }, []);
+
+          return (
+            <div className="min-h-screen flex flex-col">
+              <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-950/80 backdrop-blur-md border-b border-slate-800 py-3' : 'bg-transparent py-6'}`}>
+                <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded flex items-center justify-center font-bold text-white shadow-lg shadow-cyan-500/20">
+                      [ ]
+                    </div>
+                    <span className="text-xl font-bold tracking-tight text-white">Open Braket</span>
+                  </div>
+                  <div className="hidden md:flex items-center gap-8">
+                    <a href="#analytical-framework" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">Framework</a>
+                    <a href="#computational-advantage" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">Advantage</a>
+                    <a href="#roadmap" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">Roadmap</a>
+                    <a href="mailto:director.openbraket@gmail.com" className="px-5 py-2.5 bg-slate-100 text-slate-950 text-sm font-bold rounded hover:bg-white transition-all">
+                      Contact Us
+                    </a>
+                  </div>
+                </div>
+              </nav>
+
+              <section className="relative pt-40 pb-20 overflow-hidden">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] pointer-events-none opacity-40 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent"></div>
+                
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                  <div className="max-w-3xl">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 border border-cyan-500/30 text-cyan-400 text-xs font-bold tracking-widest uppercase mb-6">
+                      <Zap size={14} /> Near-Term Quantum Deployment
+                    </div>
+                    <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-8">
+                      Accelerated Financial <br />
+                      <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-clip-text text-transparent">Intelligence Infrastructure</span>
+                    </h1>
+                    <p className="text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl">
+                      Open Braket integrates deterministic quantum speedups into the traditional financial stack. 
+                      We resolve computational bottlenecks in high-fidelity derivatives pricing and portfolio optimization using validated quantum processors.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 mb-16">
+                      <a href="#analytical-framework" className="group flex items-center justify-center gap-2 px-8 py-4 bg-cyan-600 text-white font-bold rounded-lg hover:bg-cyan-500 transition-all shadow-lg shadow-cyan-600/20">
+                        View Framework
+                        <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+                      </a>
+                      <a href="#investment-thesis" className="flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 border border-slate-700 text-white font-bold rounded-lg hover:bg-slate-700 transition-all">
+                        Technical Whitepaper
+                      </a>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-slate-800/50">
+                      <div>
+                        <div className="text-2xl font-mono font-bold text-white">$700T</div>
+                        <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Derivatives Market</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-mono font-bold text-white">100x+</div>
+                        <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Target Throughput</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-mono font-bold text-white">156</div>
+                        <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">IBM Heron Qubits</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-mono font-bold text-white">99.9%</div>
+                        <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Gate Fidelity</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section id="analytical-framework" className="py-24 bg-slate-950/50">
+                <div className="max-w-7xl mx-auto px-6">
+                  <div className="max-w-4xl">
+                    <div className="text-cyan-500 font-mono text-sm mb-4 uppercase tracking-[0.2em] font-bold">The Strategic Window</div>
+                    <h2 className="text-4xl font-bold text-white mb-8 leading-tight">
+                      Deterministic Advantage via Quantum Amplitude Estimation
+                    </h2>
+                    <div className="grid md:grid-cols-2 gap-12">
+                      <div className="space-y-6">
+                        <p className="text-lg text-slate-400 leading-relaxed">
+                          Traditional Monte Carlo simulations (MCS) are limited by 1/√N convergence rates. Our implementation of Quantum Amplitude Estimation (QAE) achieves a quadratic speedup (1/N), directly reducing computational overhead and latency in risk reporting.
+                        </p>
+                        <div className="p-6 bg-cyan-950/20 border border-cyan-900/30 rounded-xl">
+                          <h4 className="text-cyan-400 font-bold mb-2 flex items-center gap-2">
+                            <Target size={18} /> High Fidelity Greeks
+                          </h4>
+                          <p className="text-sm text-slate-400">Calculate Delta, Gamma, and Vega sensitivity with 10x fewer samples than classical benchmarks.</p>
+                        </div>
+                      </div>
+                      <div className="space-y-6">
+                        <p className="text-lg text-slate-400 leading-relaxed">
+                          We operate a hybrid architecture where heavy-lifting math kernels are offloaded to QPUs while data orchestration remains on high-availability classical cloud infrastructure.
+                        </p>
+                        <div className="p-6 bg-blue-950/20 border border-blue-900/30 rounded-xl">
+                          <h4 className="text-blue-400 font-bold mb-2 flex items-center gap-2">
+                            <Cpu size={18} /> Hardware Agnostic
+                          </h4>
+                          <p className="text-sm text-slate-400">Validated performance across superconducting (IBM) and trapped-ion (IonQ) modalities.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section id="computational-advantage" className="py-24">
+                <div className="max-w-7xl mx-auto px-6">
+                  <div className="text-center max-w-3xl mx-auto mb-16">
+                    <h2 className="text-4xl font-bold text-white mb-6">Core Capability Architecture</h2>
+                    <p className="text-lg text-slate-400">
+                      Targeted deployment in sectors where current NISQ hardware delivers measurable performance delta over purely classical solutions.
+                    </p>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <CapabilityCard 
+                      icon={<Target className="text-cyan-400" />}
+                      title="Derivative Valuation"
+                      description="Quantum Amplitude Estimation for pricing exotic options with significantly reduced sample requirements."
+                      metric="O(1/ε) vs O(1/ε²)"
+                      highlight="Pricing Speedup"
+                    />
+                    <CapabilityCard 
+                      icon={<LineChart className="text-blue-400" />}
+                      title="Portfolio Optimization"
+                      description="Utilizing QAOA and VQE to solve combinatorial optimization under real-world liquidity constraints."
+                      metric="Polynomial Reduction"
+                      highlight="NP-Hard Resolution"
+                    />
+                    <CapabilityCard 
+                      icon={<ShieldCheck className="text-indigo-400" />}
+                      title="Credit Risk Analytics"
+                      description="Quantum-enhanced machine learning for default probability modeling in high-dimensional datasets."
+                      metric="Higher AUC/ROC"
+                      highlight="Model Precision"
+                    />
+                    <CapabilityCard 
+                      icon={<Network className="text-purple-400" />}
+                      title="Volatility Forecasting"
+                      description="Quantum Circuit-based Time Series analysis to capture hidden temporal correlations."
+                      metric="Noise-Resilient"
+                      highlight="Alpha Generation"
+                    />
+                    <CapabilityCard 
+                      icon={<Cpu className="text-emerald-400" />}
+                      title="Integrated Quantum Middleware"
+                      description="Enterprise interface for seamless switching between quantum backends with automated transpilation."
+                      metric="Unified API"
+                      highlight="Cross-Backend"
+                    />
+                    <CapabilityCard 
+                      icon={<Globe className="text-amber-400" />}
+                      title="PQC Standards"
+                      description="Implementing Post-Quantum Cryptography (NIST-v1) to secure legacy data assets."
+                      metric="FIPS Compliant"
+                      highlight="Future-Proof"
+                    />
+                  </div>
+                </div>
+              </section>
+
+              <section id="roadmap" className="py-24 bg-slate-950">
+                <div className="max-w-7xl mx-auto px-6">
+                  <div className="flex flex-col md:flex-row gap-12 items-start">
+                    <div className="md:w-1/3 sticky top-32">
+                      <div className="text-cyan-500 font-mono text-sm mb-4 uppercase tracking-[0.2em] font-bold">Operational Timeline</div>
+                      <h2 className="text-4xl font-bold text-white mb-6 leading-tight">Strategic Scaling</h2>
+                      <p className="text-slate-400 leading-relaxed mb-8">
+                        Early adoption secures technical IP and talent pipelines required for the 2026 quantum advantage transition.
+                      </p>
+                    </div>
+                    
+                    <div className="md:w-2/3 space-y-12">
+                      <RoadmapItem 
+                        year="2024-2025"
+                        phase="Pilot Integration"
+                        description="Deployment of QAE-based pricing for tier-1 credit derivatives. Benchmarking vs GPU clusters in Bangalore."
+                        status="Active"
+                      />
+                      <RoadmapItem 
+                        year="2025-2026"
+                        phase="Regional Expansion"
+                        description="Scaling operations to Dubai office. Integration with enterprise trading systems. 400+ qubit utility benchmarks."
+                        status="Scheduled"
+                      />
+                      <RoadmapItem 
+                        year="2027+"
+                        phase="Market Dominance"
+                        description="Quantum-native risk orchestration across global asset classes. Transition to fault-tolerant error correction."
+                        status="Target"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section id="investment-thesis" className="py-24">
+                <div className="max-w-7xl mx-auto px-6">
+                  <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950 border border-slate-800 rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
+                    <div className="relative z-10">
+                      <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Partner with Quantum Intelligence</h2>
+                      <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto">
+                        Open Braket is engaging with visionary LPs and institutional clients to deploy the first production-ready financial quantum stack in Bangalore and our upcoming office in Dubai.
+                      </p>
+                      
+                      <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                        <a href="mailto:director.openbraket@gmail.com" className="group flex items-center gap-3 px-10 py-5 bg-white text-slate-950 font-bold rounded-xl hover:bg-slate-100 transition-all shadow-2xl shadow-white/5">
+                          <Mail size={20} />
+                          Initiate Strategic Dialogue
+                        </a>
+                        <button className="flex items-center gap-3 px-10 py-5 bg-slate-800 border border-slate-700 text-white font-bold rounded-xl hover:bg-slate-700 transition-all">
+                          Access Data Room
+                          <ArrowUpRight size={18} />
+                        </button>
+                      </div>
+                      
+                      <div className="mt-16 pt-12 border-t border-slate-800/50 text-slate-500 text-sm">
+                        <p>Bangalore, India • Dubai (upcoming), UAE</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <footer className="py-12 border-t border-slate-900 bg-[#020617]">
+                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-slate-800 rounded flex items-center justify-center font-bold text-white text-[10px]">
+                      [ ]
+                    </div>
+                    <span className="text-lg font-bold text-white">Open Braket</span>
+                  </div>
+                  <div className="text-slate-500 text-sm">
+                    &copy; 2024 Open Braket. Engineering the Quantitative Future.
+                  </div>
+                </div>
+              </footer>
+            </div>
+          );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
